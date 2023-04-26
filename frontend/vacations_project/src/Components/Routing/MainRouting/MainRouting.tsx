@@ -7,6 +7,7 @@ function MainRouting(): JSX.Element {
     return (
         <div className="MainRouting">
 			<Routes>
+            <Route path="/" element={<Main/>}/>
                 <Route path="/" element={<Main/>}/>
                 <Route path="*" element={<Page404/>}/>
             </Routes>
