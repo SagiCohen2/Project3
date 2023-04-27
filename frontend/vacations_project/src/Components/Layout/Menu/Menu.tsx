@@ -8,6 +8,7 @@ function Menu(): JSX.Element {
     return (
         <div className="Menu">
             <h2>Menu</h2><hr/>
+            <Button fullWidth variant="contained" color="success" onClick={()=> navigate ("/Main")}>Home</Button><br/><hr/>
             <ButtonGroup fullWidth>
 			<Button variant="contained" onClick={()=> navigate ("/EditVac")}>Edit Vacation</Button><br/>
             <Button variant="contained" onClick={()=> navigate ("/AddVac")}>Add Vacation</Button>

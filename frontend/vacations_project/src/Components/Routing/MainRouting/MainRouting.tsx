@@ -9,6 +9,7 @@ function MainRouting(): JSX.Element {
     return (
         <div className="MainRouting">
 			<Routes>
+            <Route path="/EditVac" element={<EditVac/>}/>
                 <Route path="/EditVac" element={<EditVac/>}/>
                 <Route path="/AddVac" element={<AddVac/>}/>
                 <Route path="/" element={<Main/>}/>
