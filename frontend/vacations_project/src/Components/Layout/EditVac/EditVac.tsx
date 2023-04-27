@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 function EditVac(): JSX.Element {
     return (
         <div className="EditVac">
-			<div className="Box">Edit Vacation:<hr/>
+			<div className="Box"><h3>Edit Vacation:</h3><hr/>
             Destination:<br/><input type="text"></input><br/>
             <hr/>
             Description:<br/><textarea></textarea><br/>
@@ -16,8 +16,8 @@ function EditVac(): JSX.Element {
             Price:<br/><input type="number"></input>
             <hr/>
             Cover image:<br/><input type="file"></input><hr/>
-            <Button variant="contained">Update</Button><br/>
-            <Button variant="contained">Cancel</Button><br/>
+            <Button fullWidth variant="contained">Update</Button><br/>
+            <Button variant="contained" color="error" size="small">Cancel</Button><br/>
             </div>
         </div>
     );
