@@ -17,7 +17,7 @@ function AddVac(): JSX.Element {
         : [];
         vacations.push(newVacData);
         localStorage.setItem("vacations",JSON.stringify(vacations));
-        // navigate("/");
+        navigate("/");
         console.log(vacations);
     }
     

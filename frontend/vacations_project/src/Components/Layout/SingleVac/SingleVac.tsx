@@ -7,7 +7,7 @@ interface VacationProps{
     vacStartDate:string;
     vacEndDate:string;
     vacPrice:number;
-    vacImage:string;
+    // vacImage:string;
 }
 
 function SingleVac(props:VacationProps): JSX.Element {
@@ -18,7 +18,7 @@ function SingleVac(props:VacationProps): JSX.Element {
             {props.vacStartDate}<br/>
             {props.vacEndDate}<br/>
             {props.vacPrice}<br/>
-            {props.vacImage}
+            {/* {props.vacImage} */}
         </div>
     );
 }

@@ -14,7 +14,7 @@ function Main(): JSX.Element {
     return (
         <div className="Main">
 			<h1>Project 3 test</h1><hr/>
-            {vacations.map(item=><SingleVac vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={0} vacImage={item.vacImage}/>)}
+            {vacations.map(item=><SingleVac vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={0}/>)}
         </div>
     );
 }
