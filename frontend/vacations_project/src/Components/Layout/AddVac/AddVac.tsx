@@ -2,14 +2,25 @@ import "./AddVac.css";
 import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import Vacation from '../../../Model/Vacation';
+import { useNavigate } from 'react-router-dom';
 
 function AddVac(): JSX.Element {
+    const navigate = useNavigate();
     const {
         register,handleSubmit,formState: {errors},
     } = useForm<Vacation>();
     const send = (newVacData: Vacation) => {
         console.log(newVacData);
+        let vacations:Vacation[]=[];
+        vacations = localStorage.getItem("vacations") 
+        ? JSON.parse(localStorage.getItem("vacations"))
+        : [];
+        vacations.push(newVacData);
+        localStorage.setItem("vacations",JSON.stringify(vacations));
+        // navigate("/");
+        console.log(vacations);
     }
+    
     return (
         <div className="AddVac">
             <form onSubmit={handleSubmit(send)}>
