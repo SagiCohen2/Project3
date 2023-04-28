@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Main.css";
 import Vacation from '../../../Model/Vacation';
+import SingleVac from "../SingleVac/SingleVac";
 
 function Main(): JSX.Element {
     const [vacations, setVacations] = useState<Vacation[]>([]);
@@ -13,17 +14,7 @@ function Main(): JSX.Element {
     return (
         <div className="Main">
 			<h1>Project 3 test</h1><hr/>
-            {vacations.map((item) =>
-            <div className="Box">
-                {item.destination}<br/>
-                {item.description}<br/>
-                {item.startDate}<br/>
-                {item.endDate}<br/>
-                {item.price}<br/>
-                {item.vacImage}
-            </div>
-            )}
-            
+            {vacations.map(item=><SingleVac vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={0} vacImage={item.vacImage}/>)}
         </div>
     );
 }
