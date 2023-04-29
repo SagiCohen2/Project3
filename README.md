@@ -4,4 +4,4 @@ Vacations app, HAVE FUN!</h2>
 <hr/><br/>
 Notes for myself: <br/>
 *.  Vac image file need to be added to vacations info string in AddVac,SingleVac,Main.<br/>
-*.  Date picker need to be fixed.
+*.  Login+Register page , maybe make them one page.
