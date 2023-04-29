@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import Vacation from '../../../Model/Vacation';
 import { useNavigate } from 'react-router-dom';
 import { DatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers-pro";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function AddVac(): JSX.Element {
     const navigate = useNavigate();
@@ -41,8 +43,10 @@ function AddVac(): JSX.Element {
         />
             <br/>
             <hr/>
-            <DatePicker label="Start on:"  {...register("startDate")}/><br/>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker label="Start on:"  {...register("startDate")}/><hr/>
             <DatePicker label="End on:"  {...register("endDate")}/>
+            </LocalizationProvider>
             <hr/>
             <FormControl fullWidth sx={{ m: 1 }}>
           <InputLabel htmlFor="outlined-adornment-amount">Price</InputLabel>
