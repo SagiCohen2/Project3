@@ -1,0 +1,33 @@
+{
+  "name": "vacations_project",
+  "version": "1.0.0",
+  "description": "A vacations web for the last project in JohnBryce course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SagiCohen2/Project3.git"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "js",
+    "node.js"
+  ],
+  "author": "Sagi Cohen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SagiCohen2/Project3/issues"
+  },
+  "homepage": "https://github.com/SagiCohen2/Project3#readme",
+  "dependencies": {
+    "@types/express-fileupload": "^1.4.1",
+    "@types/morgan": "^1.9.4",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "loadsh": "^0.0.4"
+  }
+}
