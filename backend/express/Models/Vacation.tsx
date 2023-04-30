@@ -1,4 +1,5 @@
 class Vacation {
+    public id:number;
     public destination:string;
     public description:string;
     public startDate:string;
