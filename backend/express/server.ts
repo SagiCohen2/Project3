@@ -30,6 +30,6 @@ server.use("api/v1/users/",loginRouter);
 
 // start the server
 server.listen(config.WebPort, () => {
-    // console.log(`listing on http://${config.mySQLhost}:${config.WebPort}`);
-    console.log(`we are live`);
+    console.log(`listing on http://${config.mySQLhost}:${config.WebPort}`);
+    // console.log(`we are live`);
 });

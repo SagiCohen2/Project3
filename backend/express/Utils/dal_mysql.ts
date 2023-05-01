@@ -9,7 +9,7 @@ const connection = mysql.createPool({
     database: config.mySQLdatabase,
 });
 
-console.log("We are on!");
+// console.log("dal is working, We are on!");
 
 const execute = (sql:string):Promise<any> => {
     return new Promise<any>((resolve,reject)=> {
