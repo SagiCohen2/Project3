@@ -13,7 +13,7 @@ const addVac = async (newVac:Vacation) => {
     return result.insertId;
 }
 
-const editVac = (vac:Vacation) => {}
+const editVac = (editVac:Vacation) => {}
 
 const deleteVac = (id:number) => {}
 
@@ -36,7 +36,7 @@ const createVacsTable = () => {
 
 export default {
     addVac,
-    updateVac,
+    editVac,
     deleteVac,
     getVacById,
     getAllVacs,
