@@ -12,6 +12,7 @@ import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
 
 const router = express.Router();
 
+// Add new vacation
 router.post(
     "/AddVac",
     async (request:Request, response:Response, next:NextFunction) => {
@@ -22,6 +23,7 @@ router.post(
     }
 );
 
+// Delete vaction
 router.delete(
     "/deleteVac",
     async (request:Request, response:Response, next:NextFunction) => {
@@ -32,6 +34,30 @@ router.delete(
         console.log("deleting..")
         response.status(204);
     }
-)
+);
+
+// Edit vacation
+router.put(
+    "/EditVac",
+    async (request:Request, response:Response, next:NextFunction) => {
+        response.status(202).json(VacationLogicMYSQL.editVac(request.body))
+    }
+);
+
+// Get vacation by id
+router.get(
+    "/getVacation/:id",
+    async (request:Request, response:Response, next:NextFunction) => {
+        response.status(200).json(await VacationLogicMYSQL.getVacById(+request.params.id))
+    }
+);
+
+// Get all vacations
+router.get(
+    "/allVacs",
+    async (request:Request, response:Response, next:NextFunction) => {
+        response.status(201).json(await VacationLogicMYSQL.getAllVacs())
+    }
+);
 
 export default router;
