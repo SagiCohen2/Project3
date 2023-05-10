@@ -21,7 +21,10 @@ const deleteVac = (id:number) => {}
 
 const getVacById = (id:number) => {}
 
-const getAllVacs = () => {}
+const getAllVacs = async () => {
+    const SQLcommand = `SELECT * FROM vac_project.vacations;`;
+    return await dal_mysql.execute(SQLcommand);
+}
 
 const createVacsTable = () => {
     const SQLcommand = `CREATE TABLE IF NOT EXISTS vac_project.vacations (

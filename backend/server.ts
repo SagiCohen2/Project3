@@ -1,35 +1,37 @@
-import express from 'express';
-import cors from 'cors';
-import fileUpload from 'express-fileupload';
-import bodyParser from 'body-parser';
-import router from './Routes/VacationRoutes';
-import loginRouter from './Routes/LoginRouter';
-import config from './Utils/Config';
+//imports
+import bodyParser from "body-parser";
+import cors from "cors"; //npm install cors
+import express from "express";
+import fileUpload from "express-fileupload";
+import config from "./Utils/Config";
+import ErrorHandler from "./MiddleWare/route-not-found";
+import router from "./Routes/VacationRoutes";
 
-// create server
+//create server
 const server = express();
 
-// handle cors - middleware
-server.use((cors));
+//handle cors
+server.use(cors());
 
-// data will send back in json
+//how we send the data back (JSON,XML,RAW,String)
 server.use(express.json());
 
-// where ill save the files - vacations images
-server.use(express.static("all_vacations"));
+//where i will save the video files
+server.use(express.static("user_files"));
 
-// enable file uploading , create path
-server.use(fileUpload({ createParentPath: true}));
+//enable file uploading, and create a path for the files if it not exists
+server.use(fileUpload({ createParentPath: true }));
 
-// parse the body for easy working
+//parse the body as json , for easy work
 server.use(bodyParser.json());
 
-// routes
-server.use("api/v1/vacations/",router);
-server.use("api/v1/users/",loginRouter);
+//how to use the routes
+server.use("/api/v1/vacations", router);
 
-// start the server
+//handle errors (route not found)
+server.use("*", ErrorHandler);
+
+//start the server
 server.listen(config.WebPort, () => {
-    console.log(`listing on http://${config.mySQLhost}:${config.WebPort}`);
-    // console.log(`we are live`);
+  console.log(`listinging on http://${config.mySQLhost}:${config.WebPort}`);
 });
