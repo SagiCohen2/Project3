@@ -22,6 +22,7 @@ const deleteVac = (id:number) => {}
 const getVacById = (id:number) => {}
 
 const getAllVacs = async () => {
+    // Get all vacations table info
     const SQLcommand = `SELECT * FROM vac_project.vacations;`;
     return await dal_mysql.execute(SQLcommand);
 }
