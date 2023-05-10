@@ -31,7 +31,7 @@ const createVacsTable = () => {
     const SQLcommand = `CREATE TABLE IF NOT EXISTS vac_project.vacations (
         id INT NOT NULL AUTO_INCREMENT,
         destination VARCHAR(45) NOT NULL,
-        description VARCHAR(45) NOT NULL,
+        description VARCHAR(255) NOT NULL,
         startDate VARCHAR(45) NOT NULL,
         endDate VARCHAR(45) NOT NULL,
         price VARCHAR(45) NOT NULL,

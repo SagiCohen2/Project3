@@ -13,12 +13,14 @@ interface VacationProps{
 function SingleVac(props:VacationProps): JSX.Element {
     return (
         <div className="SingleVac Box">
+            <>
 			{props.vacDestination}<br/>
             {props.vacDescription}<br/>
             {props.vacStartDate}<br/>
             {props.vacEndDate}<br/>
             {props.vacPrice}<br/>
             {/* {props.vacImage} */}
+            </>
         </div>
     );
 }

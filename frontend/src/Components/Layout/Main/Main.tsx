@@ -20,6 +20,8 @@ function Main(): JSX.Element {
         .then((response) => {
             setVacations(response.data);
             console.log("Data is on air, enjoy!")
+            console.log(response.data)
+            console.log(response.data.endDate[4])
         });
     },[]);
 
