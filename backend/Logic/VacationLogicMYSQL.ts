@@ -3,6 +3,8 @@ import { OkPacket } from 'mysql'
 import Vacation from '../Models/Vacation';
 import { response } from 'express';
 
+
+
 const addVac = async (newVac:Vacation) => {
     // SQL command for adding vacation
     const SQLcommand = `INSERT INTO vac_project.vacations
@@ -13,7 +15,7 @@ const addVac = async (newVac:Vacation) => {
     return result.insertId;
 }
 
-const editVac = (editVac:Vacation) => {}
+const editVac = (vac:Vacation) => {}
 
 const deleteVac = (id:number) => {}
 
