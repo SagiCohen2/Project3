@@ -1,5 +1,6 @@
 import "./SingleVac.css";
 import Vacation from '../../../Model/Vacation';
+import { prettyStartDate, prettyEndDate } from '../Main/Main';
 
 interface VacationProps{
     vacDestination:string;
@@ -16,8 +17,8 @@ function SingleVac(props:VacationProps): JSX.Element {
             <>
 			{props.vacDestination}<br/>
             {props.vacDescription}<br/>
-            {props.vacStartDate}<br/>
-            {props.vacEndDate}<br/>
+            {prettyStartDate(props.vacStartDate)}<br/>
+            {prettyEndDate(props.vacEndDate)}<br/>
             {props.vacPrice}<br/>
             {/* {props.vacImage} */}
             </>
