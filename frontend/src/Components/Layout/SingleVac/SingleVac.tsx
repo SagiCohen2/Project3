@@ -2,6 +2,7 @@ import "./SingleVac.css";
 import Vacation from '../../../Model/Vacation';
 import { prettyStartDate, prettyEndDate } from '../Main/Main';
 
+
 interface VacationProps{
     vacDestination:string;
     vacDescription:string;
