@@ -4,6 +4,15 @@ import Vacation from '../../../Model/Vacation';
 import SingleVac from "../SingleVac/SingleVac";
 import { Request,Response,NextFunction} from 'express';
 import axios from "axios";
+import { Card } from "@mui/material";
+import AspectRatio from '@mui/joy/AspectRatio';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
+import Typography from '@mui/joy/Typography';
+import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
+import InfoCard from "../InfoCard/InfoCard";
+
 
 function Main(): JSX.Element {
 
@@ -23,9 +32,12 @@ function Main(): JSX.Element {
 
     return (
         <div className="Main">
+            <div>
 			<h1>Sagi's Vacations Website</h1><hr/>
             <h2>Those are the latest vacations we got for you:</h2>
-            {vacations.map(item=><SingleVac vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={item.price}/>)}
+            {/* {vacations.map(item=><SingleVac vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={item.price}/>)}<br/> */}
+            {vacations.map(item=><InfoCard vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={item.price}/>)}<br/>
+            </div>
         </div>
     );
 }

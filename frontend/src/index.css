@@ -4,7 +4,7 @@ body,html,#root {
   height: 100%;
   text-align: center;
   color: darkblue;
-  background-image: linear-gradient(45deg, lightblue,orange);
+  background-image: linear-gradient(45deg, lightblue,rgb(128, 192, 215));
   direction: rtl;
 }
 
@@ -16,4 +16,5 @@ body,html,#root {
   border-radius: 10px;
   box-shadow: 5px 5px 10px 5px;
   direction: ltr;
+  font-family: 'Rubik Mono One', sans-serif;
 }
