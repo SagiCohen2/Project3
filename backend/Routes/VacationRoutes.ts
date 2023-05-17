@@ -51,6 +51,7 @@ router.put(
     "/EditVac",
     async (request: Request, response: Response, next: NextFunction) => {
         response.status(202).json(VacationLogicMYSQL.editVac(request.body))
+        console.log(`Edit works!`)
     }
 );
 

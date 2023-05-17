@@ -36,7 +36,6 @@ function Main(): JSX.Element {
 			<h1>Sagi's Vacations Website</h1><hr/>
             <h2>Those are the latest vacations we got for you:</h2>
             <div className="vacation-list">
-            {/* {vacations.map(item=><SingleVac vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={item.price}/>)}<br/> */}
             {vacations.map(item=><InfoCard key={item.id} vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={item.price}/>)}
             </div>
             </div>

@@ -15,7 +15,18 @@ const addVac = async (newVac:Vacation) => {
     return result.insertId;
 }
 
-const editVac = (vac:Vacation) => {}
+const editVac =  async (editVac:Vacation) => {
+    // Edit Vacation
+    const SQLcommand = `UPDATE vac_project.vacations 
+    SET destination = '${editVac.destination}', 
+    description = '${editVac.description}', 
+    startDate = '${editVac.startDate}', 
+    endDate = '${editVac.endDate}', 
+    price = '${editVac.price}' 
+    WHERE (id = '${editVac.id}');`;
+    const result:OkPacket = await dal_mysql.execute(SQLcommand);
+    return result.insertId;
+}
 
 const deleteVac = (id:number) => {}
 

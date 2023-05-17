@@ -60,7 +60,7 @@ function AddVac(): JSX.Element {
             label="Amount" {...register("price", { required: true })}
           /></FormControl><br/>
             Cover image:<br/><input type="file" {...register("vacImage")}></input><hr/>
-            <Button fullWidth variant="contained" type="submit">Add Vacation</Button><br/>
+            <Button fullWidth variant="contained" type="submit">Add Vacation</Button><hr/>
             <Button variant="contained" color="error" size="small">Cancel</Button><br/>
             </div>
             </form>

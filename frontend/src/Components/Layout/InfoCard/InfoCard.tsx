@@ -7,7 +7,8 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { prettyStartDate, prettyEndDate } from '../Main/Main';
-import { Favorite } from "@mui/icons-material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Checkbox } from "@mui/material";
 
 interface VacationProps{
     vacDestination:string;
@@ -17,6 +18,7 @@ interface VacationProps{
     vacPrice:number;
     // vacImage:string;
 }
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function InfoCard(props:VacationProps): JSX.Element {
     return (
@@ -25,17 +27,11 @@ function InfoCard(props:VacationProps): JSX.Element {
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
       {props.vacDestination}
       </Typography>
-      <Typography level="body2">{prettyStartDate(props.vacStartDate)} till
+      <Typography level="body2">{prettyStartDate(props.vacStartDate)} till 
             {prettyEndDate(props.vacEndDate)}<br/></Typography>
-      <IconButton
-        aria-label="Like minimal photography"
-        variant="plain"
-        color="danger"
-        size="sm"
-        sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
-      >
-        <Favorite />
-      </IconButton>
+            <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} color="error"
+        size="medium"
+        sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }} />
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img
           src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
