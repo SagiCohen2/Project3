@@ -1,3 +1,6 @@
 .InfoCard {
-	
+	margin: 10px;
+    /* justify-content: flex-start; */
+    /* flex-basis: calc(33.33% - 10px); */
+    /* flex-grow: 1; */
 }

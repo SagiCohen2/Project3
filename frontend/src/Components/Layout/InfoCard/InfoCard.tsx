@@ -7,6 +7,7 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { prettyStartDate, prettyEndDate } from '../Main/Main';
+import { Favorite } from "@mui/icons-material";
 
 interface VacationProps{
     vacDestination:string;
@@ -27,13 +28,13 @@ function InfoCard(props:VacationProps): JSX.Element {
       <Typography level="body2">{prettyStartDate(props.vacStartDate)} till
             {prettyEndDate(props.vacEndDate)}<br/></Typography>
       <IconButton
-        aria-label="bookmark Bahamas Islands"
+        aria-label="Like minimal photography"
         variant="plain"
-        color="neutral"
+        color="danger"
         size="sm"
         sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
       >
-        <BookmarkAdd />
+        <Favorite />
       </IconButton>
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img
