@@ -11,7 +11,6 @@ function MainLayout(): JSX.Element {
             <main><MainRouting/></main>
             <menu><Menu/></menu>
             <footer><Footer/></footer>
-            
         </div>
     );
 }
