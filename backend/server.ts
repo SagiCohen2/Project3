@@ -5,7 +5,8 @@ import express from "express";
 import fileUpload from "express-fileupload";
 import config from "./Utils/Config";
 import ErrorHandler from "./MiddleWare/route-not-found";
-import router from "./Routes/VacationRoutes";
+import loginRouter from "./Routes/LoginRouter";
+import vacationsRouter from "./Routes/VacationRoutes";
 
 //create server
 const server = express();
@@ -26,12 +27,13 @@ server.use(fileUpload({ createParentPath: true }));
 server.use(bodyParser.json());
 
 //how to use the routes
-server.use("/api/v1/vacations", router);
+server.use("/api/v1/users", loginRouter);
+server.use("/api/v1/vacations", vacationsRouter);
 
 //handle errors (route not found)
 server.use("*", ErrorHandler);
 
 //start the server
 server.listen(config.WebPort, () => {
-  console.log(`listinging on http://${config.mySQLhost}:${config.WebPort}`);
+  console.log(`listening on http://${config.mySQLhost}:${config.WebPort}`);
 });

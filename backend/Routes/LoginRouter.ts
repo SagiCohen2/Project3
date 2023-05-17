@@ -2,6 +2,14 @@ import express, { NextFunction, Request, Response } from "express";
 
 const loginRouter = express.Router();
 
+//POST Method check
+loginRouter.post(
+    "/checkOK",
+    async (request: Request, response: Response, next: NextFunction) => {
+        response.status(200).json(`{"msg":"OK"}`);
+    }
+);
+
 loginRouter.post(
     "/login",
     async(request:Request,response:Response,next:NextFunction) => {
@@ -20,7 +28,7 @@ loginRouter.post(
 
 loginRouter.delete(
     "/deleteUser/:userId",
-    async(request:Request,response:Response,next:NextFunction) => {
+    (request:Request,response:Response,next:NextFunction) => {
         console.log("delete user");
         response.status(204).json(`{'msg':'User deleted.'}`);
     }

@@ -10,11 +10,11 @@ import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
 //vacSearch => GET
 //vacUpdate => PUT
 
-const router = express.Router();
+const vacationsRouter = express.Router();
 
 
 //POST Method check
-router.post(
+vacationsRouter.post(
     "/checkOK",
     async (request: Request, response: Response, next: NextFunction) => {
         response.status(200).json(`{"msg":"OK"}`);
@@ -23,7 +23,7 @@ router.post(
 
 
 // Add new vacation
-router.post(
+vacationsRouter.post(
     "/AddVac",
     async (request: Request, response: Response, next: NextFunction) => {
         const newVac = request.body;
@@ -34,7 +34,7 @@ router.post(
 );
 
 // Delete vaction
-router.delete(
+vacationsRouter.delete(
     "/deleteVac",
     async (request: Request, response: Response, next: NextFunction) => {
         const vacId = +request.params.id || null;
@@ -47,7 +47,7 @@ router.delete(
 );
 
 // Edit vacation
-router.put(
+vacationsRouter.put(
     "/EditVac",
     async (request: Request, response: Response, next: NextFunction) => {
         response.status(202).json(VacationLogicMYSQL.editVac(request.body))
@@ -56,7 +56,7 @@ router.put(
 );
 
 // Get vacation by id
-router.get(
+vacationsRouter.get(
     "/getVacation/:id",
     async (request: Request, response: Response, next: NextFunction) => {
         response.status(200).json(await VacationLogicMYSQL.getVacById(+request.params.id))
@@ -64,11 +64,11 @@ router.get(
 );
 
 // Get all vacations
-router.get(
+vacationsRouter.get(
     "/allVacs",
     async (request: Request, response: Response, next: NextFunction) => {
         response.status(201).json(await VacationLogicMYSQL.getAllVacs())
     }
 );
 
-export default router;
+export default vacationsRouter;

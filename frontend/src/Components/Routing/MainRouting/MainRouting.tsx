@@ -4,12 +4,14 @@ import AddVac from "../../Layout/AddVac/AddVac";
 import EditVac from "../../Layout/EditVac/EditVac";
 import Page404 from "../../Pages/Page404/Page404";
 import "./MainRouting.css";
+import Login from '../../Pages/Login/Login';
 
 function MainRouting(): JSX.Element {
     return (
         <div className="MainRouting">
 			<Routes>
                 <Route path="/Main" element={<Main/>}/>
+                <Route path="/Login" element={<Login/>}/>
                 <Route path="/EditVac" element={<EditVac/>}/>
                 <Route path="/AddVac" element={<AddVac/>}/>
                 <Route path="/" element={<Main/>}/>
