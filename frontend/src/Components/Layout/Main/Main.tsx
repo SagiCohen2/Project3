@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Main.css";
 import Vacation from '../../../Model/Vacation';
-import SingleVac from "../SingleVac/SingleVac";
 import { Request,Response,NextFunction} from 'express';
 import axios from "axios";
 import { Card } from "@mui/material";

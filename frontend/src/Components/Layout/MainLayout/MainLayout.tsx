@@ -7,9 +7,12 @@ import "./MainLayout.css";
 function MainLayout(): JSX.Element {
     return (
         <div className="MainLayout">
-			<header><Header/></header>
+			<header><Header/>
+            <nav>
+                <Menu/>
+            </nav>
+            </header>
             <main><MainRouting/></main>
-            <menu><Menu/></menu>
             <footer><Footer/></footer>
         </div>
     );
