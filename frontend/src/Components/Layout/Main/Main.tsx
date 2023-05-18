@@ -10,7 +10,7 @@ import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
-import InfoCard from "../InfoCard/InfoCard";
+import InfoCard from "../../Pages/InfoCard/InfoCard";
 
 
 function Main(): JSX.Element {

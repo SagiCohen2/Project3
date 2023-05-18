@@ -7,9 +7,10 @@ function Menu(): JSX.Element {
     const navigate = useNavigate();
     return (
         <div className="Menu">
-            <h2>Menu</h2><hr/>
-            <Button fullWidth variant="contained" color="success" onClick={()=> navigate ("/Main")}>Home</Button><br/><hr/>
-            <ButtonGroup fullWidth>
+            <Button size="large" variant="contained" color="success" onClick={()=> navigate ("/Main")}>Home</Button><br/><hr/>
+            <Button size="large" variant="contained" color="warning" onClick={()=> navigate ("/Login")}>Login</Button><br/>
+            <Button size="large" variant="contained" color="warning" onClick={()=> navigate ("/Register")}>Register</Button><br/>
+            <ButtonGroup size="small">
 			<Button variant="contained" onClick={()=> navigate ("/EditVac")}>Edit Vacation</Button><br/>
             <Button variant="contained" onClick={()=> navigate ("/AddVac")}>Add Vacation</Button>
             </ButtonGroup>

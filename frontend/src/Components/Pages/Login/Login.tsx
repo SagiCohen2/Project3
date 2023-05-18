@@ -1,57 +1,119 @@
-import "./Login.css";
-import {
-    MDBBtn,
-    MDBContainer,
-    MDBCard,
-    MDBCardBody,
-    MDBCardImage,
-    MDBRow,
-    MDBCol,
-    MDBIcon,
-    MDBInput
-  } from 'mdb-react-ui-kit';
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import LoginInfo from '../../../Model/Login';
+import { useNavigate } from 'react-router-dom';
 
-function Login(): JSX.Element {
-    return (
-        <div className="Login">
-			 <MDBContainer fluid>
-      <MDBRow>
-
-        <MDBCol sm='6'>
-
-          <div className='d-flex flex-row ps-5 pt-5'>
-            <MDBIcon fas icon="crow fa-3x me-3" style={{ color: '#709085' }}/>
-            <span className="h1 fw-bold mb-0">Logo</span>
-          </div>
-
-          <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4'>
-
-            <h3 className="fw-normal mb-3 ps-5 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>
-
-            <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Email address' id='formControlLg' type='email' size="lg"/>
-            <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Password' id='formControlLg' type='password' size="lg"/>
-
-            <MDBBtn className="mb-4 px-5 mx-5 w-100" color='info' size='lg'>Login</MDBBtn>
-            <p className="small mb-5 pb-lg-3 ms-5"><a className="text-muted" href="#!">Forgot password?</a></p>
-            <p className='ms-5'>Don't have an account? <a href="#!" className="link-info">Register here</a></p>
-
-          </div>
-
-        </MDBCol>
-
-        <MDBCol sm='6' className='d-none d-sm-block px-0'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp"
-            alt="Login image" className="w-100" style={{objectFit: 'cover', objectPosition: 'left'}} />
-        </MDBCol>
-
-      </MDBRow>
-
-    </MDBContainer>
-    </div>
-    );
+function Copyright(props: any) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
-  
 
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
 
+export default function SignIn() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
 
-export default Login;
+  const navigate = useNavigate();
+const navigateRegister = () => {
+  // 👇️ navigate to /
+  navigate('/Register');
+}
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2" onClick={navigateRegister}>
+                  {"Don't have an account? Register Now!"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
+      </Container>
+    </ThemeProvider>
+  );
+}

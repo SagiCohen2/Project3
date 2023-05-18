@@ -6,7 +6,7 @@ import Card from '@mui/joy/Card';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
-import { prettyStartDate, prettyEndDate } from '../Main/Main';
+import { prettyStartDate, prettyEndDate } from '../../Layout/Main/Main';
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
 
