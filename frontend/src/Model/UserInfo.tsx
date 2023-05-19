@@ -1,5 +1,5 @@
 
-class LoginInfo {
+class UserInfo {
         public id:number;
         public email:string;
         public password:string;
@@ -11,4 +11,4 @@ class LoginInfo {
         }
 }
 
-export default LoginInfo;
+export default UserInfo;

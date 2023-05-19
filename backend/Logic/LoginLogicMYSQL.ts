@@ -1,9 +1,10 @@
 import dal_mysql from '../Utils/dal_mysql';
 import { OkPacket } from 'mysql'
+import UserInfo from '../Models/UserInfo';
 
 
 
-const register = () => {
+const register = async (newUser:UserInfo) => {
 
 }
 
@@ -24,6 +25,7 @@ const createUsersTable = () => {
 }
 
 export default {
+    register,
     deleteUser,
     createUsersTable
 }

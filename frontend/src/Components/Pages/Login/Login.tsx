@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LoginInfo from '../../../Model/Login';
+import LoginInfo from '../../../Model/UserInfo';
 import { useNavigate } from 'react-router-dom';
 
 function Copyright(props: any) {
@@ -20,7 +20,7 @@ function Copyright(props: any) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+      Sagi Cohen's Vacations Website
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
