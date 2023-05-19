@@ -92,6 +92,7 @@ const send = (newUser: LoginInfo) => {
                   autoFocus
                   {...register("fullName",{ required: true , minLength: 4 })}
                 />
+                {errors.fullName && <span>This field is required.</span>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -103,6 +104,7 @@ const send = (newUser: LoginInfo) => {
                   autoComplete="email"
                   {...register("email",{ required: true })}
                 />
+                {errors.email && <span>This field is required.</span>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -115,6 +117,7 @@ const send = (newUser: LoginInfo) => {
                   autoComplete="new-password"
                   {...register("password",{ required: true , minLength: 5 })}
                 />
+                {errors.password && <span>This field is required.</span>}
               </Grid>
             </Grid>
             <Button
