@@ -1,6 +1,11 @@
 import express, { NextFunction, Request, Response } from "express";
+import LoginLogicMYSQL from "../Logic/LoginLogicMYSQL";
 
 const loginRouter = express.Router();
+
+// Register     => POST
+// Login        => GET
+// deleteUser   => DELETE
 
 //POST Method check
 loginRouter.post(
@@ -10,7 +15,7 @@ loginRouter.post(
     }
 );
 
-loginRouter.post(
+loginRouter.get(
     "/login",
     async(request:Request,response:Response,next:NextFunction) => {
         console.log("logged in");
@@ -20,9 +25,11 @@ loginRouter.post(
 
 loginRouter.post(
     "/register",
-    async(request:Request,response:Response,next:NextFunction) => {
-        console.log("register");
-        response.status(201).json(`{'msg':'Register successfully, welcome'}`);
+    async (request:Request,response:Response,next:NextFunction) => {
+        const newUser = request.body;
+        const result = await LoginLogicMYSQL.register(newUser);
+        console.log("register", newUser);
+        response.status(201).json(result);
     }
 )
 

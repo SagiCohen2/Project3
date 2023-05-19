@@ -5,6 +5,7 @@ Vacations app, HAVE FUN!</h2>
 Notes for myself: <br/>
 *.  Vac image file need to be added to vacations info string in AddVac,SingleVac,Main.<br/>
 *.  Login+Register page , maybe make them one page.<br/>
-*.  AddVac -> fixed startdate and enddate design.<br/>
+*.  AddVac  -> fixed startdate and enddate design.<br/>
+*.  EditVac<br/>
 
-last update: 15/05/23
+last update: 19/05/23

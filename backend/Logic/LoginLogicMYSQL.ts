@@ -5,7 +5,12 @@ import UserInfo from '../Models/UserInfo';
 
 
 const register = async (newUser:UserInfo) => {
-
+    // SQL command for new user
+    const SQLcommand = `INSERT INTO 
+    vac_project.users (name,email, pass) 
+    VALUES ('${newUser.fullName}', '${newUser.email}', '${newUser.password}');`
+    const result:OkPacket = await dal_mysql.execute(SQLcommand);
+    return result.insertId;
 }
 
 const deleteUser = (id:number) => {
