@@ -34,13 +34,13 @@ function Copyright(props: any) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function SignIn(): JSX.Element {
 // AXIOS request for check IF USER EXISTS in the database
 const findUser = (existsUser: any) => {
   axios
-    .get('http://localhost:8080/api/v1/users/login', existsUser)
+    .post('http://localhost:8080/api/v1/users/login', existsUser)
     .then((response) => {
-      // console.log(response)
+      console.log(response.data)
     })
     .catch((err) => {
       console.error(err)

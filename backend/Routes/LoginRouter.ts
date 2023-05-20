@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import LoginLogicMYSQL from "../Logic/LoginLogicMYSQL";
+import UserInfo from "../Models/UserInfo";
 
 const loginRouter = express.Router();
 
@@ -15,26 +16,35 @@ loginRouter.post(
     }
 );
 
-loginRouter.get(
-    "/login",
-    async(request:Request,response:Response,next:NextFunction) => {
-        try {
-            console.log("logged in");
-            const loginResult = await LoginLogicMYSQL.login;
-            
-            // Check if the loginResult is empty or undefined
-            if (!loginResult) {
-                throw new Error("Details not found in the database."); // Throw an error if the details are not found
-            }
-            
-            response.status(200).json(loginResult);
-        } catch (error) {
-            console.error(error);
-        console.log("logged in successfully");
-          // response.status(200).json(await LoginLogicMYSQL.login);
-        }
-    });
+// loginRouter.get(
+//     "/login",
+//     async(request:Request,response:Response,next:NextFunction) => {
+//         console.log("logged in successfully");
+//           response.status(200).json(await LoginLogicMYSQL.login);
+//           console.log(LoginLogicMYSQL.login)
+//         }
+// )
 
+
+loginRouter.post(
+    "/login",
+    async (request: Request, response: Response) => {
+    try {
+        const { email, password } = request.body;
+        const existsUser: UserInfo = {
+            email, password,
+            id: 0,
+            fullName: "",
+            role: ""
+        };
+        const exists = await LoginLogicMYSQL.login(existsUser);
+        const userExists = exists[0]["count(*)"] === 1;
+        response.json({ userExists });
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Internal server error' });
+    }
+    });
 
 loginRouter.post(
     "/register",

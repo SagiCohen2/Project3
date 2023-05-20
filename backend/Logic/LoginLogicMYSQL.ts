@@ -5,9 +5,15 @@ import UserInfo from '../Models/UserInfo';
 
 
 const login = async (existsUser:UserInfo) => {
-        const SQLcommand = `SELECT * FROM users
+        // SQL command for login.
+        // Checking if the user is exists in the database
+        const SQLcommand = `SELECT count(*)
+        FROM users as userCount
         WHERE email='${existsUser.email}' and pass='${existsUser.password}';`;
-        return await dal_mysql.execute(SQLcommand);
+        const result = await dal_mysql.execute(SQLcommand);
+        const userCount = result[0].userCount;
+        const exists = userCount === 1; // Map userCount to true or false
+        return exists;
 }
 
 
