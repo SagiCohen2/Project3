@@ -15,13 +15,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginInfo from '../../../Model/UserInfo';
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-      Sagi Cohen's Vacations Website
+      Sagi Cohen's Vacations Website,This Login page was Made with Material UI.
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -33,19 +35,31 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
+// AXIOS request for check IF USER EXISTS in the database
+const findUser = (existsUser: any) => {
+  axios
+    .get('http://localhost:8080/api/v1/users/login', existsUser)
+    .then((response) => {
+      // console.log(response)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+}
   const navigate = useNavigate();
 const navigateRegister = () => {
   // 👇️ navigate to /
   navigate('/Register');
+}
+
+
+const {
+  register,handleSubmit,formState: {errors},
+} = useForm<LoginInfo>();
+const send = (existsUser: LoginInfo) => {
+  console.log(existsUser);
+  findUser(existsUser);
+  // navigate("/");
 }
 
   return (
@@ -66,7 +80,7 @@ const navigateRegister = () => {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit(send)} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -76,6 +90,7 @@ const navigateRegister = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              {...register("email" ,{required:true})}
             />
             <TextField
               margin="normal"
@@ -86,10 +101,7 @@ const navigateRegister = () => {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              {...register("password" ,{required:true})}
             />
             <Button
               type="submit"

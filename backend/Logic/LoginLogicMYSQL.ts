@@ -4,6 +4,13 @@ import UserInfo from '../Models/UserInfo';
 
 
 
+const login = async (existsUser:UserInfo) => {
+        const SQLcommand = `SELECT * FROM users
+        WHERE email='${existsUser.email}' and pass='${existsUser.password}';`;
+        return await dal_mysql.execute(SQLcommand);
+}
+
+
 const register = async (newUser:UserInfo) => {
     // SQL command for new user
     const SQLcommand = `INSERT INTO 
@@ -21,6 +28,7 @@ const deleteUser = (id:number) => {
 const createUsersTable = () => {
     const SQLcommand = `CREATE TABLE IF NOT EXISTS vac_project.users (
         id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(45) NULL,
         email VARCHAR(45) NULL,
         pass VARCHAR(45) NULL,
         role VARCHAR(45) NULL,
@@ -31,6 +39,7 @@ const createUsersTable = () => {
 
 export default {
     register,
+    login,
     deleteUser,
     createUsersTable
 }

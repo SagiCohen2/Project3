@@ -3,9 +3,9 @@ import LoginLogicMYSQL from "../Logic/LoginLogicMYSQL";
 
 const loginRouter = express.Router();
 
-// Register     => POST
-// Login        => GET
-// deleteUser   => DELETE
+// Register        => POST
+// Login           => GET
+// Delete User     => DELETE
 
 //POST Method check
 loginRouter.post(
@@ -18,10 +18,23 @@ loginRouter.post(
 loginRouter.get(
     "/login",
     async(request:Request,response:Response,next:NextFunction) => {
-        console.log("logged in");
-        response.status(200).json(`{'msg':'Logged in successfully, welcome back'}`);
-    }
-)
+        try {
+            console.log("logged in");
+            const loginResult = await LoginLogicMYSQL.login;
+            
+            // Check if the loginResult is empty or undefined
+            if (!loginResult) {
+                throw new Error("Details not found in the database."); // Throw an error if the details are not found
+            }
+            
+            response.status(200).json(loginResult);
+        } catch (error) {
+            console.error(error);
+        console.log("logged in successfully");
+          // response.status(200).json(await LoginLogicMYSQL.login);
+        }
+    });
+
 
 loginRouter.post(
     "/register",

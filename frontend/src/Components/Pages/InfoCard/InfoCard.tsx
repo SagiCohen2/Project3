@@ -54,7 +54,7 @@ function InfoCard(props:VacationProps): JSX.Element {
           aria-label="Explore Bahamas Islands"
           sx={{ ml: 'auto', fontWeight: 600 }}
         >
-          Explore
+          Add
         </Button>
       </Box>
     </Card>

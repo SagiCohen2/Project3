@@ -17,7 +17,11 @@ server.use(cors());
 //how we send the data back (JSON,XML,RAW,String)
 server.use(express.json());
 
-//where i will save the video files
+// multer , for file uploads
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
+//where i will save the files
 server.use(express.static("user_files"));
 
 //enable file uploading, and create a path for the files if it not exists

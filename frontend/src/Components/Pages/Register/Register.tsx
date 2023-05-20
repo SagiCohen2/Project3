@@ -16,13 +16,14 @@ import { useForm } from 'react-hook-form';
 import LoginInfo from '../../../Model/UserInfo';
 import axios from 'axios';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import notify from '../../Utils/Notyf'
 
 function Copyright(props: any): JSX.Element {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Sagi Cohen's Vacations Website
+        Sagi Cohen's Vacations Website, This Register page was Made with Material UI.
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
