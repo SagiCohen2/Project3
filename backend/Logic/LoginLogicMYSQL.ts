@@ -11,7 +11,9 @@ const login = async (existsUser:UserInfo) => {
         FROM users as userCount
         WHERE email='${existsUser.email}' and pass='${existsUser.password}';`;
         const result = await dal_mysql.execute(SQLcommand);
-        const userCount = result[0].userCount;
+        // console.log(result) , works.
+        const userCount = result[0]['count(*)'];
+        // console.log(userCount) , works.
         const exists = userCount === 1; // Map userCount to true or false
         return exists;
 }

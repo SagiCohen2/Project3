@@ -7,6 +7,8 @@ import config from "./Utils/Config";
 import ErrorHandler from "./MiddleWare/route-not-found";
 import loginRouter from "./Routes/LoginRouter";
 import vacationsRouter from "./Routes/VacationRoutes";
+import LoginLogicMYSQL from "./Logic/LoginLogicMYSQL";
+import VacationLogicMYSQL from "./Logic/VacationLogicMYSQL";
 
 //create server
 const server = express();
@@ -36,6 +38,10 @@ server.use("/api/v1/vacations", vacationsRouter);
 
 //handle errors (route not found)
 server.use("*", ErrorHandler);
+
+// check if database table exists, if not create them
+LoginLogicMYSQL.createUsersTable();
+VacationLogicMYSQL.createVacsTable();
 
 //start the server
 server.listen(config.WebPort, () => {

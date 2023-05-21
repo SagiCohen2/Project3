@@ -38,8 +38,8 @@ loginRouter.post(
             role: ""
         };
         const exists = await LoginLogicMYSQL.login(existsUser);
-        const userExists = exists[0]["count(*)"] === 1;
-        response.json({ userExists });
+        const userExists = exists === true; 
+        response.json({ exists });
     } catch (error) {
         console.error(error);
         response.status(500).json({ error: 'Internal server error' });
