@@ -5,7 +5,7 @@ import UserInfo from "../Models/UserInfo";
 const loginRouter = express.Router();
 
 // Register        => POST
-// Login           => GET
+// Login           => POST
 // Delete User     => DELETE
 
 //POST Method check
@@ -15,16 +15,6 @@ loginRouter.post(
         response.status(200).json(`{"msg":"OK"}`);
     }
 );
-
-// loginRouter.get(
-//     "/login",
-//     async(request:Request,response:Response,next:NextFunction) => {
-//         console.log("logged in successfully");
-//           response.status(200).json(await LoginLogicMYSQL.login);
-//           console.log(LoginLogicMYSQL.login)
-//         }
-// )
-
 
 loginRouter.post(
     "/login",

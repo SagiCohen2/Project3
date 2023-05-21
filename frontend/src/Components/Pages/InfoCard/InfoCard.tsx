@@ -27,8 +27,8 @@ function InfoCard(props:VacationProps): JSX.Element {
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
       {props.vacDestination}
       </Typography>
-      <Typography level="body2">{prettyStartDate(props.vacStartDate)} till 
-            {prettyEndDate(props.vacEndDate)}<br/></Typography>
+      <Typography level="body2">
+            {props.vacDescription}<br/></Typography>
             <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} color="error"
         size="medium"
         sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }} />
@@ -42,7 +42,8 @@ function InfoCard(props:VacationProps): JSX.Element {
       </AspectRatio>
       <Box sx={{ display: 'flex' }}>
         <div>
-          <Typography level="body3">{props.vacDescription}</Typography>
+          <Typography level="body3">{prettyStartDate(props.vacStartDate)} till 
+            {prettyEndDate(props.vacEndDate)}<br/></Typography>
           <Typography fontSize="lg" fontWeight="lg">
             ${props.vacPrice}
           </Typography>

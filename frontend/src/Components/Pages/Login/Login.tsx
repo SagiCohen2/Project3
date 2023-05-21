@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import notify from '../../Utils/Notyf';
 
 function Copyright(props: any) {
   return (
@@ -40,7 +41,17 @@ const findUser = (existsUser: any) => {
   axios
     .post('http://localhost:8080/api/v1/users/login', existsUser)
     .then((response) => {
-      console.log(response.data)
+      // console.log(response.data)
+      // Sending the user alert if the data is correct or no. LOGIN OR FAILED
+      const userExists = response.data.exists;
+      if (userExists === true) {
+        notify.success("Logged in successfully");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000); // Delay of 2 seconds , just for notify being showed.
+      } else {
+        notify.error("Failed to log in, check details again.");
+      }
     })
     .catch((err) => {
       console.error(err)
@@ -57,7 +68,7 @@ const {
   register,handleSubmit,formState: {errors},
 } = useForm<LoginInfo>();
 const send = (existsUser: LoginInfo) => {
-  console.log(existsUser);
+  // console.log(existsUser);
   findUser(existsUser);
   // navigate("/");
 }
