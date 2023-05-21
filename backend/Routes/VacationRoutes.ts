@@ -33,15 +33,17 @@ vacationsRouter.post(
     }
 );
 
-// Delete vaction
+// Delete vacation
 vacationsRouter.delete(
     "/deleteVac",
     async (request: Request, response: Response, next: NextFunction) => {
         const vacId = +request.params.id || null;
         if (vacId === null || vacId < 1) {
-            response.status(404).json("{'msg':'Vacation not found'}");
+            response.status(404).json(`Vacation not found`);
+            // console.log(response)
         }
         console.log("deleting..")
+        // console.log(response)
         response.status(204);
     }
 );

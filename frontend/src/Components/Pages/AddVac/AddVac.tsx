@@ -7,10 +7,13 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from "axios";
+import { useState } from "react";
 
 function AddVac(): JSX.Element {
 
     const navigate = useNavigate();
+
+    const [image, setImage] = useState("");
 
     const {
       register,handleSubmit,formState: {errors},
@@ -27,6 +30,19 @@ function AddVac(): JSX.Element {
       })
       navigate("/")
     }
+
+      // const uploadImage = (newImage:any) => {
+      //   console.log(newImage)
+      //   const uploadFile = new FormData();
+      //   uploadFile.append("newImage", newImage);
+      //   axios.post(`http://localhost:8080/api/v1/vacations/uploadFile`,uploadFile),
+      //     {
+      //       headers: {
+      //         "Content-Type":"multipart/form-data"
+      //       }
+      //     }
+      //   };
+      
 
     return (
         <div className="AddVac">
@@ -59,8 +75,10 @@ function AddVac(): JSX.Element {
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             label="Amount" {...register("price", { required: true })}
           /></FormControl><br/>
-            Cover image:<br/><input type="file" {...register("vacImage")}></input><hr/>
-            <Button fullWidth variant="contained" type="submit">Add Vacation</Button><hr/>
+          <h4>Choose Vacation Image</h4>
+            {/* <br/><TextField fullWidth type="file" {...register("vacImage")}></TextField><hr/> */}
+            <br/><input id='files' type="file" multiple></input><hr/>
+            <Button variant="contained" type="submit">Add Vacation</Button><hr/>
             <Button variant="contained" color="error" size="small">Cancel</Button><br/>
             </div>
             </form>

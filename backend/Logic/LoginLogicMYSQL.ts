@@ -29,6 +29,7 @@ const register = async (newUser:UserInfo) => {
 }
 
 const deleteUser = (id:number) => {
+    
 
 }
 
