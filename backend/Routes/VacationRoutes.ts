@@ -1,8 +1,7 @@
-import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
-import fileUpload from "express-fileupload";
 import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
-
+// import multer from 'multer';
+// import path from 'path'
 
 //addVac    => POST 
 //deleteVac => DELETE
@@ -11,6 +10,21 @@ import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
 //vacUpdate => PUT
 
 const vacationsRouter = express.Router();
+
+// interface MulterRequest extends Request {
+//     file: any;
+// }
+
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, path.join(__dirname, '../assets'));
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, Date.now() + path.extname(file.originalname));
+//     }
+// });
+
+// const fileUpload = multer({storage})
 
 
 //POST Method check
@@ -25,6 +39,7 @@ vacationsRouter.post(
 // Add new vacation
 vacationsRouter.post(
     "/AddVac",
+    // fileUpload.single('image'),
     async (request: Request, response: Response, next: NextFunction) => {
         const newVac = request.body;
         const result = await VacationLogicMYSQL.addVac(newVac);

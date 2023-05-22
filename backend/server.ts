@@ -1,3 +1,4 @@
+
 //imports
 import bodyParser from "body-parser";
 import cors from "cors"; //npm install cors
@@ -9,6 +10,7 @@ import loginRouter from "./Routes/LoginRouter";
 import vacationsRouter from "./Routes/VacationRoutes";
 import LoginLogicMYSQL from "./Logic/LoginLogicMYSQL";
 import VacationLogicMYSQL from "./Logic/VacationLogicMYSQL";
+import path from "path";
 
 //create server
 const server = express();
@@ -21,10 +23,11 @@ server.use(express.json());
 
 // multer , for file uploads
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: "uploads/" })
 
 //where i will save the files
-server.use(express.static("user_files"));
+
+server.use('assets',express.static(path.resolve(__dirname,'../assets')))
 
 //enable file uploading, and create a path for the files if it not exists
 server.use(fileUpload({ createParentPath: true }));

@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Main.css";
 import Vacation from '../../../Model/Vacation';
-import { Request,Response,NextFunction} from 'express';
 import axios from "axios";
-import { Card } from "@mui/material";
-import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import IconButton from '@mui/joy/IconButton';
-import Typography from '@mui/joy/Typography';
-import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import InfoCard from "../../Pages/InfoCard/InfoCard";
 
 
@@ -23,8 +15,8 @@ function Main(): JSX.Element {
             setVacations(response.data);
             console.log("Data is on air, enjoy!")
             // DATES FIX TO BE PRETTY , DD/MM/YYYY
-            const startDateArray = response.data.map((vacation: { startDate: any; }) => vacation.startDate);
-            const endDateArray = response.data.map((vacation: { endDate: any; }) => vacation.endDate);
+            // const startDateArray = response.data.map((vacation: { startDate: any; }) => vacation.startDate);
+            // const endDateArray = response.data.map((vacation: { endDate: any; }) => vacation.endDate);
             // console.log(response.data[6])
         });
     },[]);
