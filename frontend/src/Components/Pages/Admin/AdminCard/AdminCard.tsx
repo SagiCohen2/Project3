@@ -5,12 +5,9 @@ import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { prettyStartDate, prettyEndDate } from '../../../Layout/Main/Main';
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
-import { Checkbox } from "@mui/material";
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteVac from "../DeleteVac/DeleteVac";
 
 interface VacationProps{
     vacDestination:string;
@@ -31,9 +28,9 @@ function AdminCard(props:VacationProps): JSX.Element {
       </Typography>
       <Typography level="body2">
             {props.vacDescription}<br/></Typography>
-            <IconButton variant="plain" color="neutral" size="sm" sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}>
-            <DeleteOutlineOutlinedIcon />
-          </IconButton>
+            {/* <IconButton variant="plain" color="neutral" size="sm" sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}> */}
+            <DeleteVac/>
+          {/* </IconButton> */}
           <IconButton variant="plain" color="neutral" size="sm" sx={{ position: 'absolute', top: '0.5rem', right: '2.2rem' }}>
             <EditOutlinedIcon />
           </IconButton>

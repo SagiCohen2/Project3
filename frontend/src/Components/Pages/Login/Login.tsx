@@ -50,7 +50,7 @@ const findUser = (existsUser: any) => {
           navigate("/");
         }, 2500); // Delay of 2.5 seconds , just for notify being showed.
       } else {
-        notify.error("Failed to log in, check details again.");
+        notify.error("Failed, Check email and password again.");
       }
     })
     .catch((err) => {
