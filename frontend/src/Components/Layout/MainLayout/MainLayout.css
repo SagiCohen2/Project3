@@ -4,6 +4,7 @@
     display: grid;
     grid-template-rows: auto 85% 5%;
     grid-template-columns: repeat(6,1fr);
+    /* overflow: auto; */
 }
 
 .MainLayout> header,
@@ -13,11 +14,13 @@
 
 .MainLayout> main {
     grid-column: span 6;
+    overflow: auto;
+    height: 100%;
     /* position:relative; */
     /* margin: auto; */
 }
 
-.MainLayout, .MainLayout> * {
+.MainLayout > * {
     border: 1px solid black;
 }
 

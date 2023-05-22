@@ -2,7 +2,7 @@
 	direction: ltr;
 	display: flex;
   	flex-direction: column;
-}
+	}
 
 .vacation-list {
 	align-items: flex-start;

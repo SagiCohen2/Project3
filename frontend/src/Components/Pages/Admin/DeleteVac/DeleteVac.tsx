@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import IconButton from '@mui/joy/IconButton';
+import axios from 'axios';
+import Vacation from '../../../../Model/Vacation';
 
     const DeleteComponent = () => {
         const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
       
+        // WHEN USER PRESS THE YES BUTTON INSIDE THE DIALOG , DELETING VACATION.
         const handleDelete = () => {
-          // Perform the delete operation
+            axios
+            // .delete(`
+            // http://localhost:8080/api/v1/vacations/deleteVac/:${id}
+            // `)
           setIsDeleteDialogOpen(false);
         };
       

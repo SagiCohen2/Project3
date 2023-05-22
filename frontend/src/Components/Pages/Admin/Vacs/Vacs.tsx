@@ -17,7 +17,7 @@ function Vacs(): JSX.Element {
             // DATES FIX TO BE PRETTY , DD/MM/YYYY
             const startDateArray = response.data.map((vacation: { startDate: any; }) => vacation.startDate);
             const endDateArray = response.data.map((vacation: { endDate: any; }) => vacation.endDate);
-            // console.log(response.data[6])
+            // console.log(response.data[6].id)
         });
     },[]);
 

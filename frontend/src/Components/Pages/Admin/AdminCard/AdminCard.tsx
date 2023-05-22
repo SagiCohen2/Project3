@@ -28,9 +28,8 @@ function AdminCard(props:VacationProps): JSX.Element {
       </Typography>
       <Typography level="body2">
             {props.vacDescription}<br/></Typography>
-            {/* <IconButton variant="plain" color="neutral" size="sm" sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}> */}
-            <DeleteVac/>
-          {/* </IconButton> */}
+            {/* ANOTHER COMPONENT FOR DELETE CARD */}
+            <DeleteVac/> 
           <IconButton variant="plain" color="neutral" size="sm" sx={{ position: 'absolute', top: '0.5rem', right: '2.2rem' }}>
             <EditOutlinedIcon />
           </IconButton>
