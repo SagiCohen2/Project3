@@ -1,3 +1,4 @@
+import AdminRouting from "../../Routing/AdminRouting/AdminRouting";
 import MainRouting from "../../Routing/MainRouting/MainRouting";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -12,7 +13,10 @@ function MainLayout(): JSX.Element {
                 <Menu/>
             </nav>
             </header>
-            <main><MainRouting/></main>
+            <main>
+                <MainRouting/>
+                <AdminRouting/>
+            </main>
             <footer><Footer/></footer>
         </div>
     );

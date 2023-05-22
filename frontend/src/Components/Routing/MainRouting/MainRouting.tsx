@@ -1,7 +1,7 @@
 import { Route,Routes } from "react-router-dom";
 import Main from "../../Layout/Main/Main";
 import AddVac from "../../Pages/AddVac/AddVac";
-import EditVac from "../../Pages/EditVac/EditVac";
+import EditVac from "../../Pages/Admin/EditVac/EditVac";
 import Page404 from "../../Pages/Page404/Page404";
 import "./MainRouting.css";
 import Login from '../../Pages/Login/Login';

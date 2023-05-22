@@ -1,7 +1,7 @@
 import "./EditVac.css";
 import { Button, FormControl, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { useForm } from "react-hook-form";
-import Vacation from "../../../Model/Vacation";
+import Vacation from "../../../../Model/Vacation";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
