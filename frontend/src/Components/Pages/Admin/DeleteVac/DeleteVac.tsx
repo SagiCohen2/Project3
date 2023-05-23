@@ -3,17 +3,18 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import IconButton from '@mui/joy/IconButton';
 import axios from 'axios';
-import Vacation from '../../../../Model/Vacation';
+import AdminCard from '../AdminCard/AdminCard';
+
 
     const DeleteComponent = () => {
         const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
       
-        // WHEN USER PRESS THE YES BUTTON INSIDE THE DIALOG , DELETING VACATION.
-        const handleDelete = () => {
-            // axios
-            // .delete(`
-            // http://localhost:8080/api/v1/vacations/deleteVac/:${id}
-            // `)
+        // WHEN ADMIN PRESS THE YES BUTTON INSIDE THE DIALOG , DELETING VACATION.
+        const handleDelete = (id:any) => {
+            axios
+            .delete(`
+            http://localhost:8080/api/v1/vacations/deleteVac/${id}
+            `)
           setIsDeleteDialogOpen(false);
         };
       
@@ -42,7 +43,7 @@ import Vacation from '../../../../Model/Vacation';
         <Button onClick={handleCancelDelete} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleDelete} color="primary" variant="contained">
+        <Button onClick={(event)=>handleDelete(event)} color="primary" variant="contained">
           Yes
         </Button>
       </DialogActions>

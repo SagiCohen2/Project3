@@ -28,14 +28,13 @@ const editVac =  async (editVac:Vacation) => {
     return result.insertId;
 }
 
-const deleteVac = (id:number) => {
+const deleteVac = async (id:number) => {
     // SQL command for delete vacation
     const SQLcommand = `DELETE FROM vac_project.vacations 
     WHERE id=${id};`;
-    return dal_mysql.execute(SQLcommand);
+    await dal_mysql.execute(SQLcommand);
+    return true;
 }
-
-const getVacById = (id:number) => {}
 
 const getAllVacs = async () => {
     // Get all vacations table info
@@ -60,7 +59,6 @@ export default {
     addVac,
     editVac,
     deleteVac,
-    getVacById,
     getAllVacs,
     createVacsTable,
 }

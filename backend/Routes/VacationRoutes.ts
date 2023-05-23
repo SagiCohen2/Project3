@@ -1,7 +1,9 @@
 import express, { NextFunction, Request, Response } from "express";
 import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
-// import multer from 'multer';
-// import path from 'path'
+import multer from 'multer';
+import path from 'path'
+
+
 
 //addVac    => POST 
 //deleteVac => DELETE
@@ -11,22 +13,6 @@ import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
 
 const vacationsRouter = express.Router();
 
-// interface MulterRequest extends Request {
-//     file: any;
-// }
-
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, path.join(__dirname, '../assets'));
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname));
-//     }
-// });
-
-// const fileUpload = multer({storage})
-
-
 //POST Method check
 vacationsRouter.post(
     "/checkOK",
@@ -35,11 +21,29 @@ vacationsRouter.post(
     }
 );
 
+// const storage = multer.diskStorage({
+//     destination: (req:any,file:any,cb:any) => {
+//         cb(null,'../uploads')
+//     },
+//     filename: (req:any,file:any,cb:any) => {
+//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname)) 
+//     }
+// })
+
+// const upload = multer ({
+//     storage:storage
+// })
+
+// vacationsRouter.post(
+//     "uploadfile",upload.single('image'),
+//     async (request: Request, response: Response, next: NextFunction) => {
+//         console.log(request.file)
+//     }
+// )
 
 // Add new vacation
 vacationsRouter.post(
-    "/AddVac",
-    // fileUpload.single('image'),
+    "/AddVac", 
     async (request: Request, response: Response, next: NextFunction) => {
         const newVac = request.body;
         const result = await VacationLogicMYSQL.addVac(newVac);
@@ -50,18 +54,13 @@ vacationsRouter.post(
 
 // Delete vacation
 vacationsRouter.delete(
-    "/deleteVac",
-    (request: Request, response: Response, next: NextFunction) => {
-        const vacId = +request.params.id || null;
-        if (vacId === null || vacId < 1) {
-            response.status(404).json(`Vacation not found`);
-            console.log(request.params.id)
+        "/deleteVac/:id",
+        (request: Request, response: Response, next: NextFunction) => {
+            const id = +request.params.id;
+            VacationLogicMYSQL.deleteVac(id);
+            response.status(204).json();
         }
-        console.log("deleting..")
-        console.log(request.params.id)
-        response.status(204);
-    }
-);
+    );
 
 // Edit vacation
 vacationsRouter.put(
@@ -69,14 +68,6 @@ vacationsRouter.put(
     async (request: Request, response: Response, next: NextFunction) => {
         response.status(202).json(VacationLogicMYSQL.editVac(request.body))
         console.log(`Edit works!`)
-    }
-);
-
-// Get vacation by id
-vacationsRouter.get(
-    "/getVacation/:id",
-    async (request: Request, response: Response, next: NextFunction) => {
-        response.status(200).json(await VacationLogicMYSQL.getVacById(+request.params.id))
     }
 );
 
@@ -89,3 +80,7 @@ vacationsRouter.get(
 );
 
 export default vacationsRouter;
+
+function deleteVac(vacId: number | null) {
+    throw new Error("Function not implemented.");
+}

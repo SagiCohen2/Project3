@@ -1,4 +1,3 @@
-
 //imports
 import bodyParser from "body-parser";
 import cors from "cors"; //npm install cors
@@ -11,6 +10,7 @@ import vacationsRouter from "./Routes/VacationRoutes";
 import LoginLogicMYSQL from "./Logic/LoginLogicMYSQL";
 import VacationLogicMYSQL from "./Logic/VacationLogicMYSQL";
 import path from "path";
+// import {multer} from 'multer';
 
 //create server
 const server = express();
