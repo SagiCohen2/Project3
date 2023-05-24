@@ -31,7 +31,7 @@ const createVacsTable = () => {
 
 const createUserLikesTable = () => {
     const SQLcommand = `
-    CREATE TABLE vac_project.user_likes (
+    CREATE TABLE IF NOT EXISTS vac_project.user_likes (
         id INT NOT NULL AUTO_INCREMENT,
         PRIMARY KEY (id));`;
         const response = dal.mysql.execute(SQLcommand);
