@@ -9,6 +9,7 @@ import loginRouter from "./Routes/LoginRouter";
 import vacationsRouter from "./Routes/VacationRoutes";
 import LoginLogicMYSQL from "./Logic/LoginLogicMYSQL";
 import VacationLogicMYSQL from "./Logic/VacationLogicMYSQL";
+import TablesLogicMYSQL from "./Logic/TablesLogicMYSQL";
 import path from "path";
 // import {multer} from 'multer';
 
@@ -43,8 +44,7 @@ server.use("/api/v1/vacations", vacationsRouter);
 server.use("*", ErrorHandler);
 
 // check if database table exists, if not create them
-LoginLogicMYSQL.createUsersTable();
-VacationLogicMYSQL.createVacsTable();
+
 
 //start the server
 server.listen(config.WebPort, () => {
