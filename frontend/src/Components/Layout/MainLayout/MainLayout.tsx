@@ -4,7 +4,6 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Menu from "../Menu/Menu";
 import "./MainLayout.css";
-import { Route, Router, Routes } from 'react-router-dom';
 
 function MainLayout(): JSX.Element {
     return (

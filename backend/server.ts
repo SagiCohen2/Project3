@@ -1,34 +1,35 @@
 //imports
-import bodyParser from "body-parser";
-import cors from "cors"; //npm install cors
+import cors from "cors";
 import express from "express";
 import fileUpload from "express-fileupload";
 import config from "./Utils/Config";
 import ErrorHandler from "./MiddleWare/route-not-found";
 import loginRouter from "./Routes/LoginRouter";
 import vacationsRouter from "./Routes/VacationRoutes";
-import LoginLogicMYSQL from "./Logic/LoginLogicMYSQL";
-import VacationLogicMYSQL from "./Logic/VacationLogicMYSQL";
 import TablesLogicMYSQL from "./Logic/TablesLogicMYSQL";
-import path from "path";
-// import {multer} from 'multer';
+
+
 
 //create server
 const server = express();
 
-//handle cors
+//handle cors=
 server.use(cors());
 
 //how we send the data back (JSON,XML,RAW,String)
 server.use(express.json());
 
+
 // multer , for file uploads
+const bodyParser = require('body-parser')
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" })
+const path = require('path');
+// server.use(express.urlencoded({ extended: true }));
+// server.use(bodyParser. text({type: '/'}));
+// server.use(bodyParser());
 
 //where i will save the files
-
-server.use('assets',express.static(path.resolve(__dirname,'../assets')))
+server.use(express.static("assets"));
 
 //enable file uploading, and create a path for the files if it not exists
 server.use(fileUpload({ createParentPath: true }));
@@ -43,8 +44,11 @@ server.use("/api/v1/vacations", vacationsRouter);
 //handle errors (route not found)
 server.use("*", ErrorHandler);
 
-// check if database table exists, if not create them
-
+// check if database tables exists, if not create them
+// console.log("quick check if tables are exists.. if not, in the making..")
+TablesLogicMYSQL.createVacsTable();
+TablesLogicMYSQL.createUsersTable();
+TablesLogicMYSQL.createUserLikesTable();
 
 //start the server
 server.listen(config.WebPort, () => {

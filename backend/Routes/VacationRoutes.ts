@@ -1,7 +1,9 @@
 import express, { NextFunction, Request, Response } from "express";
 import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
 import multer from 'multer';
-import path from 'path'
+import path from 'path';
+import { UploadedFile } from "express-fileupload";
+
 
 
 
@@ -17,33 +19,28 @@ const vacationsRouter = express.Router();
 vacationsRouter.post(
     "/checkOK",
     async (request: Request, response: Response, next: NextFunction) => {
-        response.status(200).json(`{"msg":"OK"}`);
+        response.status(200).json(`post check works.`);
     }
 );
 
+
+// const path = require('path')
+
 // const storage = multer.diskStorage({
-//     destination: (req:any,file:any,cb:any) => {
-//         cb(null,'../uploads')
+//     destination: (req,file,cb) => {
+//         cb(null,'../assets')
 //     },
-//     filename: (req:any,file:any,cb:any) => {
-//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname)) 
+//     filename: (req,file,cb) => {
+//         console.log(file)
+//         cb(null, Date.now() + path.extname(file.originalname))
 //     }
 // })
 
-// const upload = multer ({
-//     storage:storage
-// })
-
-// vacationsRouter.post(
-//     "uploadfile",upload.single('image'),
-//     async (request: Request, response: Response, next: NextFunction) => {
-//         console.log(request.file)
-//     }
-// )
+// const upload = multer({ storage });
 
 // Add new vacation
 vacationsRouter.post(
-    "/AddVac", 
+    "/AddVac",
     async (request: Request, response: Response, next: NextFunction) => {
         const newVac = request.body;
         const result = await VacationLogicMYSQL.addVac(newVac);
@@ -51,6 +48,7 @@ vacationsRouter.post(
         response.status(201).json(result);
     }
 );
+
 
 // Delete vacation
 vacationsRouter.delete(
