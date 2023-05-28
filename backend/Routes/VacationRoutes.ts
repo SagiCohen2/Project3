@@ -1,17 +1,18 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { NextFunction, Request, response, Response } from "express";
 import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
 import multer from 'multer';
 import path from 'path';
 import { UploadedFile } from "express-fileupload";
+// import bla from "../assets"
 
 
 
 
-//addVac    => POST 
-//deleteVac => DELETE
-//vacList   => GET
-//vacSearch => GET
-//vacUpdate => PUT
+// AddVacation    => POST 
+// Upload Image   => POST
+// DeleteVac      => DELETE
+// VacList        => GET
+// VacUpdate      => PUT
 
 const vacationsRouter = express.Router();
 
@@ -24,20 +25,6 @@ vacationsRouter.post(
 );
 
 
-// const path = require('path')
-
-// const storage = multer.diskStorage({
-//     destination: (req,file,cb) => {
-//         cb(null,'../assets')
-//     },
-//     filename: (req,file,cb) => {
-//         console.log(file)
-//         cb(null, Date.now() + path.extname(file.originalname))
-//     }
-// })
-
-// const upload = multer({ storage });
-
 // Add new vacation
 vacationsRouter.post(
     "/AddVac",
@@ -49,6 +36,21 @@ vacationsRouter.post(
     }
 );
 
+// // upload image
+// vacationsRouter.post(
+//     "/uploadImage",uploadFiles
+//     async (request: Request, response: Response, next: NextFunction) => {
+        
+//         response.status(201).json({message: `Image uploaded successfully`})
+//     }
+// )
+const upload = multer({ dest: "../assets" });
+
+vacationsRouter.post("/uploadImage", upload.array("files"), uploadFiles);
+function uploadFiles(req:any, res:any) {
+    response.status(202).json({message: `Image uploaded successfully`})
+    console.log(req.body);
+}
 
 // Delete vacation
 vacationsRouter.delete(
@@ -78,7 +80,3 @@ vacationsRouter.get(
 );
 
 export default vacationsRouter;
-
-function deleteVac(vacId: number | null) {
-    throw new Error("Function not implemented.");
-}

@@ -10,6 +10,7 @@ import TablesLogicMYSQL from "./Logic/TablesLogicMYSQL";
 
 
 
+
 //create server
 const server = express();
 
@@ -24,12 +25,10 @@ server.use(express.json());
 const bodyParser = require('body-parser')
 const multer = require("multer");
 const path = require('path');
-// server.use(express.urlencoded({ extended: true }));
-// server.use(bodyParser. text({type: '/'}));
-// server.use(bodyParser());
+server.use(express.urlencoded({ extended: true }));
 
 //where i will save the files
-server.use(express.static("assets"));
+server.use(express.static("./assets"));
 
 //enable file uploading, and create a path for the files if it not exists
 server.use(fileUpload({ createParentPath: true }));
