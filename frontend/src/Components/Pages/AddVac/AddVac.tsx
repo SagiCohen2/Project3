@@ -3,11 +3,10 @@ import { Button, FormControl, InputAdornment, InputLabel, OutlinedInput, TextFie
 import { useForm } from 'react-hook-form';
 import Vacation from '../../../Model/Vacation';
 import { useNavigate } from 'react-router-dom';
-import { DatePicker } from "@mui/x-date-pickers";
-import { LocalizationProvider } from "@mui/x-date-pickers-pro";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from "axios";
 import { useState } from "react";
+import { mainReducer } from "../../Redux/VacationStore";
+import { addVacAction } from "../../Redux/VacationReducer";
 
 function AddVac(): JSX.Element {
 
@@ -18,6 +17,7 @@ function AddVac(): JSX.Element {
           } = useForm<Vacation>();
 
     const addNewVacation = (newVacData: Vacation) => {
+      mainReducer.dispatch(addVacAction(newVacData))
       axios
         .post(`http://localhost:8080/api/v1/vacations/AddVac`, newVacData)
         .then((response) => {

@@ -7,6 +7,7 @@ body,html,#root {
   background: url(../src/assets/layoutBG.avif) no-repeat center center fixed;
   background-size: cover;
   direction: rtl;
+  font-family: 'Rubik Mono One', sans-serif;
 }
 
 .Box {

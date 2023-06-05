@@ -8,7 +8,7 @@ function AdminRouting(): JSX.Element {
     return (
         <div className="AdminRouting">
             <Routes>
-            <Route path="/AddVac" element={<AddVac/>}/>
+            <Route path="/Admin/AddVac" element={<AddVac/>}/>
 			<Route path="/Admin/Vacs" element={<Vacs/>}/>
             <Route path="/Admin/EditVac" element={<EditVac/>}/>
             </Routes>
