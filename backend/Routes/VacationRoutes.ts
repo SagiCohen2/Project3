@@ -3,9 +3,6 @@ import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
 import multer from 'multer';
 import path from 'path';
 import { UploadedFile } from "express-fileupload";
-// import bla from "../assets"
-
-
 
 
 // AddVacation    => POST 
@@ -40,27 +37,27 @@ vacationsRouter.post(
 // vacationsRouter.post(
 //     "/uploadImage",uploadFiles
 //     async (request: Request, response: Response, next: NextFunction) => {
-        
+
 //         response.status(201).json({message: `Image uploaded successfully`})
 //     }
 // )
 const upload = multer({ dest: "../assets" });
 
 vacationsRouter.post("/uploadImage", upload.array("files"), uploadFiles);
-function uploadFiles(req:any, res:any) {
-    response.status(202).json({message: `Image uploaded successfully`})
+function uploadFiles(req: any, res: any) {
+    response.status(202).json({ message: `Image uploaded successfully` })
     console.log(req.body);
 }
 
 // Delete vacation
 vacationsRouter.delete(
-        "/deleteVac/:id",
-        (request: Request, response: Response, next: NextFunction) => {
-            const id = +request.params.id;
-            VacationLogicMYSQL.deleteVac(id);
-            response.status(204).json();
-        }
-    );
+    "/deleteVac/:id",
+    (request: Request, response: Response, next: NextFunction) => {
+        const id = +request.params.id;
+        VacationLogicMYSQL.deleteVac(id);
+        response.status(204).json();
+    }
+);
 
 // Edit vacation
 vacationsRouter.put(
