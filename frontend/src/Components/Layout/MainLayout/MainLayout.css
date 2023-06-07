@@ -5,6 +5,7 @@
     grid-template-rows: auto 85% 5%;
     grid-template-columns: repeat(6,1fr);
     /* overflow: auto; */
+    
 }
 
 .MainLayout> header,

@@ -1,10 +1,8 @@
 import { Route,Routes } from "react-router-dom";
 import Main from "../../Layout/Main/Main";
-import AddVac from "../../Pages/AddVac/AddVac";
-import Page404 from "../../Pages/Page404/Page404";
 import "./MainRouting.css";
-import Login from '../../Pages/Login/Login';
 import Register from '../../Pages/Register/Register';
+import Login from "../../Pages/Login/Login";
 
 function MainRouting(): JSX.Element {
     return (
@@ -14,7 +12,6 @@ function MainRouting(): JSX.Element {
                 <Route path="/Login" element={<Login/>}/>
                 <Route path="/Register" element={<Register/>}/>
                 <Route path="/" element={<Main/>}/>
-                <Route path="*" element={<Page404/>}/>
             </Routes>
         </div>
     );

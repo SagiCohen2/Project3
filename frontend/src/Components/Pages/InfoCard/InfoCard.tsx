@@ -3,12 +3,11 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
-import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { prettyStartDate, prettyEndDate } from '../../Layout/Main/Main';
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
+import { useState } from "react";
 
 interface VacationProps{
     vacDestination:string;
@@ -18,6 +17,30 @@ interface VacationProps{
     vacPrice:number;
     // vacImage:string;
 }
+
+const FavoriteCheckbox = () => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+
+    // Call function to add/remove from MySQL database table
+    if (event.target.checked) {
+        addToFavorites();
+      } else {
+        removeFromFavorites();
+      }
+  };
+
+  const addToFavorites = () => {
+
+  }
+
+  const removeFromFavorites = () => {
+    
+  }
+}
+
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function InfoCard(props:VacationProps): JSX.Element {
@@ -30,8 +53,9 @@ function InfoCard(props:VacationProps): JSX.Element {
       <Typography level="body2">
             {props.vacDescription}<br/></Typography>
             <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} color="error"
-        size="medium"
-        sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }} />
+        size="medium" checked={isChecked} onChange={handleCheckboxChange} 
+        sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
+        />
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img
           src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
@@ -42,7 +66,7 @@ function InfoCard(props:VacationProps): JSX.Element {
       </AspectRatio>
       <Box sx={{ display: 'flex' }}>
         <div>
-          <Typography level="body3">{prettyStartDate(props.vacStartDate)} till 
+          <Typography level="body3">{prettyStartDate(props.vacStartDate)}  Till  
             {prettyEndDate(props.vacEndDate)}<br/></Typography>
           <Typography fontSize="lg" fontWeight="lg">
             ${props.vacPrice}
@@ -63,4 +87,4 @@ function InfoCard(props:VacationProps): JSX.Element {
     );
 }
 
-export default InfoCard;
+export default { InfoCard, FavoriteCheckbox };

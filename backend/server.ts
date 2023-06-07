@@ -10,7 +10,6 @@ import TablesLogicMYSQL from "./Logic/TablesLogicMYSQL";
 
 
 
-
 //create server
 const server = express();
 

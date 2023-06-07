@@ -1,12 +1,12 @@
 import "./AddVac.css";
 import { Button, FormControl, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import Vacation from '../../../Model/Vacation';
+import Vacation from '../../../../Model/Vacation';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useState } from "react";
-import { mainReducer } from "../../Redux/VacationStore";
-import { addVacAction } from "../../Redux/VacationReducer";
+import { mainReducer } from "../../../Redux/VacationStore";
+import { addVacAction } from "../../../Redux/VacationReducer";
 
 function AddVac(): JSX.Element {
 

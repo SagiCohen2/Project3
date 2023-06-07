@@ -19,7 +19,7 @@ function MainLayout(): JSX.Element {
             </header>
             <main>
                 <Routes>
-                    <Route path="/" element={<MainRouting />} />
+                    <Route path="/m/*" element={<MainRouting />} />
                     <Route path="/admin/*" element={<AdminRouting />} />
                     <Route path="/*" element={<Page404 />} />
                 </Routes>

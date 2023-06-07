@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import IconButton from '@mui/joy/IconButton';
 import axios from 'axios';
-import AdminCard from '../AdminCard/AdminCard';
+import { mainReducer } from '../../../Redux/VacationStore';
+import { deleteVacAction } from '../../../Redux/VacationReducer';
 
 
     const DeleteComponent = () => {
@@ -11,6 +12,7 @@ import AdminCard from '../AdminCard/AdminCard';
       
         // WHEN ADMIN PRESS THE YES BUTTON INSIDE THE DIALOG , DELETING VACATION.
         const handleDelete = (id:any) => {
+            mainReducer.dispatch(deleteVacAction(id));
             axios
             .delete(`
             http://localhost:8080/api/v1/vacations/deleteVac/${id}
