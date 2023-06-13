@@ -7,6 +7,7 @@ import ErrorHandler from "./MiddleWare/route-not-found";
 import loginRouter from "./Routes/LoginRouter";
 import vacationsRouter from "./Routes/VacationRoutes";
 import TablesLogicMYSQL from "./Logic/TablesLogicMYSQL";
+import likesRouter from "./Routes/LikesRouter";
 
 
 
@@ -38,6 +39,7 @@ server.use(bodyParser.json());
 //how to use the routes
 server.use("/api/v1/users", loginRouter);
 server.use("/api/v1/vacations", vacationsRouter);
+server.use("/api/v1/likes", likesRouter);
 
 //handle errors (route not found)
 server.use("*", ErrorHandler);

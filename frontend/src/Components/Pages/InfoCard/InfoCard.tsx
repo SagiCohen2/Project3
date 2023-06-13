@@ -10,6 +10,7 @@ import { Checkbox } from "@mui/material";
 import { useState } from "react";
 
 interface VacationProps{
+    vacKey:number;
     vacDestination:string;
     vacDescription:string;
     vacStartDate:string;
@@ -18,32 +19,35 @@ interface VacationProps{
     // vacImage:string;
 }
 
-const FavoriteCheckbox = () => {
-  const [isChecked, setIsChecked] = useState(false);
 
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
-
-    // Call function to add/remove from MySQL database table
-    if (event.target.checked) {
-        addToFavorites();
-      } else {
-        removeFromFavorites();
-      }
-  };
-
-  const addToFavorites = () => {
-
-  }
-
-  const removeFromFavorites = () => {
-    
-  }
-}
+// checked={isChecked} onChange={handleCheckboxChange}
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function InfoCard(props:VacationProps): JSX.Element {
+
+    const [isChecked, setIsChecked] = useState(false);
+  
+    const handleCheckboxChange = (event:any) => {
+      setIsChecked(event.target.checked);
+      console.log('Card key:' , props.vacKey)
+  
+      // Call function to add/remove from MySQL database table
+      if (event.target.checked) {
+          addToFavorites();
+        } else {
+          removeFromFavorites();
+        }
+    };
+  
+    const addToFavorites = () => {
+  
+    }
+  
+    const removeFromFavorites = () => {
+      
+    }
+  
     return (
         <div className="InfoCard">
 			<Card variant="outlined" sx={{ width: 320 }}>
@@ -53,7 +57,7 @@ function InfoCard(props:VacationProps): JSX.Element {
       <Typography level="body2">
             {props.vacDescription}<br/></Typography>
             <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} color="error"
-        size="medium" checked={isChecked} onChange={handleCheckboxChange} 
+        size="medium" checked={isChecked} onChange={handleCheckboxChange}
         sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
         />
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
@@ -87,4 +91,4 @@ function InfoCard(props:VacationProps): JSX.Element {
     );
 }
 
-export default { InfoCard, FavoriteCheckbox };
+export default InfoCard;

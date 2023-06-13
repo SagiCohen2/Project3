@@ -1,6 +1,6 @@
 
 class UserInfo {
-        public id:number;
+        public userKey:number;
         public fullName:string;
         public email:string;
         public password:string;

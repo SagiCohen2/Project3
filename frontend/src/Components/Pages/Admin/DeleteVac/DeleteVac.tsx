@@ -11,11 +11,11 @@ import { deleteVacAction } from '../../../Redux/VacationReducer';
         const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
       
         // WHEN ADMIN PRESS THE YES BUTTON INSIDE THE DIALOG , DELETING VACATION.
-        const handleDelete = (id:any) => {
-            mainReducer.dispatch(deleteVacAction(id));
+        const handleDelete = (vacKey:any) => {
+            mainReducer.dispatch(deleteVacAction(vacKey));
             axios
             .delete(`
-            http://localhost:8080/api/v1/vacations/deleteVac/${id}
+            http://localhost:8080/api/v1/vacations/deleteVac/${vacKey}
             `)
           setIsDeleteDialogOpen(false);
         };

@@ -23,15 +23,15 @@ const editVac =  async (editVac:Vacation) => {
     startDate = '${editVac.startDate}', 
     endDate = '${editVac.endDate}', 
     price = '${editVac.price}' 
-    WHERE (id = '${editVac.id}');`;
+    WHERE (vacKey = '${editVac.vacKey}');`;
     const result:OkPacket = await dal_mysql.execute(SQLcommand);
     return result.insertId;
 }
 
-const deleteVac = async (id:number) => {
+const deleteVac = async (vacKey:number) => {
     // SQL command for delete vacation
     const SQLcommand = `DELETE FROM vac_project.vacations 
-    WHERE id=${id};`;
+    WHERE vacKey=${vacKey};`;
     await dal_mysql.execute(SQLcommand);
     return true;
 }

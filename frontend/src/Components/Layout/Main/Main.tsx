@@ -5,6 +5,8 @@ import axios from "axios";
 import InfoCard from "../../Pages/InfoCard/InfoCard";
 
 
+
+
 function Main(): JSX.Element {
 
     const [vacations, setVacations] = useState<Vacation[]>([]);
@@ -27,7 +29,7 @@ function Main(): JSX.Element {
 			<h1>Sagi's Vacations Website</h1><hr/>
             <h2>Those are the latest vacations we got for you:</h2>
             <div className="vacation-list">
-            {vacations.map(item=><InfoCard key={item.id} vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={item.price}/>)}
+            {vacations.map(item=><InfoCard key={item.vacKey} vacKey={item.vacKey} vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={item.price}/>)}
             </div>
             </div>
         </div>

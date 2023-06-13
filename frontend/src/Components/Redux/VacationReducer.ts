@@ -43,7 +43,7 @@ export function VacationReducer (
             break;
 
         case VacationActionType.deleteVac:
-            newState.allVacations = [...newState.allVacations].filter(item=>item.id !== action.payload)
+            newState.allVacations = [...newState.allVacations].filter(item=>item.vacKey !== action.payload)
             break;
         
         // ANOTHER CASE
