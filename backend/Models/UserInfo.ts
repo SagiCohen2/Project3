@@ -6,10 +6,12 @@ class UserInfo {
         public password:string;
         public role:string;
 
-        constructor(fullName:string,email:string,password:string){
+        constructor(userKey:number,fullName:string,email:string,password:string,role:string){
+            this.userKey=userKey;
             this.fullName=fullName;
             this.email=email;
             this.password=password;
+            this.role=role;
         }
 }
 

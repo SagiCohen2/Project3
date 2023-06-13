@@ -23,7 +23,7 @@ loginRouter.post(
         const { email, password } = request.body;
         const existsUser: UserInfo = {
             email, password,
-            id: 0,
+            userKey: 0,
             fullName: "",
             role: ""
         };

@@ -19,9 +19,6 @@ interface VacationProps{
     // vacImage:string;
 }
 
-
-// checked={isChecked} onChange={handleCheckboxChange}
-
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function InfoCard(props:VacationProps): JSX.Element {
@@ -30,7 +27,7 @@ function InfoCard(props:VacationProps): JSX.Element {
   
     const handleCheckboxChange = (event:any) => {
       setIsChecked(event.target.checked);
-      console.log('Card key:' , props.vacKey)
+      // console.log('Card key:' , props.vacKey)
   
       // Call function to add/remove from MySQL database table
       if (event.target.checked) {
@@ -41,7 +38,7 @@ function InfoCard(props:VacationProps): JSX.Element {
     };
   
     const addToFavorites = () => {
-  
+
     }
   
     const removeFromFavorites = () => {
