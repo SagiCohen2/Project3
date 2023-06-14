@@ -8,6 +8,8 @@ import { prettyStartDate, prettyEndDate } from '../../Layout/Main/Main';
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
 import { useState } from "react";
+import axios from "axios";
+import notify from "../../Utils/Notyf";
 
 interface VacationProps{
     vacKey:number;
@@ -18,10 +20,13 @@ interface VacationProps{
     vacPrice:number;
     // vacImage:string;
 }
+interface UserProps{
+    userKey:number;
+}
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-function InfoCard(props:VacationProps): JSX.Element {
+function InfoCard(props:VacationProps & UserProps): JSX.Element {
 
     const [isChecked, setIsChecked] = useState(false);
   
@@ -37,12 +42,32 @@ function InfoCard(props:VacationProps): JSX.Element {
         }
     };
   
+    // ADD vacation to FAVORITES list
     const addToFavorites = () => {
-
+      const requestData = {
+        userKey: props.userKey,
+        vacKey: props.vacKey,  
+      };
+      axios
+      .post('http://localhost:8080/api/v1/likes/addLike', requestData)
+      .then(response => {
+        notify.success("Vacation add to favorites list");
+      })
+      .catch(error => {
+        notify.error("Error adding vacation to favorites:");
+      })
     }
-  
+
+    // DELETE vacation from FAVORITES list
     const removeFromFavorites = () => {
-      
+      axios
+      .delete('http://localhost:8080/api/v1/likes/deleteLike')
+      .then(response => {
+        notify.success("Vacation deleted from favorites list");
+      })
+      .catch(error => {
+        notify.error("Error deleting vacation from favorites list");
+      })
     }
   
     return (

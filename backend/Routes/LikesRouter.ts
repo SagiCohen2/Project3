@@ -39,14 +39,28 @@ likesRouter.post(
 
 // DELETE method for delete like from favorites list when unchecked the like button
 likesRouter.delete(
-    "/deleteLike",
+    "/deleteLike/:userKey/:vacKey",
     async (request: Request, response: Response, next: NextFunction) => {
-        const userKey = parseInt(request.params.userKey);
-        const vacKey = +request.params.vacKey;
-        const result = await LikesLogicMYSQL.deleteLike(userKey,vacKey);
-    response.status(204).json(result);    
+            // const userInfo = new UserInfo(
+            // +request.params.userKey, 
+            // request.body.fullName, 
+            // request.body.email, 
+            // request.body.password, 
+            // request.body.role)
+            // const vacationInfo = new Vacation (    
+            // +request.params.vacKey,
+            // request.body.destination,
+            // request.body.description,
+            // request.body.startDate,
+            // request.body.endDate,
+            // request.body.price,
+            // request.body.vacImage
+            // )
+        // const result = await LikesLogicMYSQL.deleteLike(userKey,vacKey);
+    response.status(204).json('result');    
     }
 )
+
 
 
 

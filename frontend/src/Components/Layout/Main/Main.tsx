@@ -16,12 +16,10 @@ function Main(): JSX.Element {
         .then((response) => {
             setVacations(response.data);
             console.log("Data is on air, enjoy!")
-            // DATES FIX TO BE PRETTY , DD/MM/YYYY
-            // const startDateArray = response.data.map((vacation: { startDate: any; }) => vacation.startDate);
-            // const endDateArray = response.data.map((vacation: { endDate: any; }) => vacation.endDate);
-            // console.log(response.data[6])
         });
     },[]);
+
+    const [userKey,setUserKey] = useState(null);
 
     return (
         <div className="Main">
@@ -29,7 +27,17 @@ function Main(): JSX.Element {
 			<h1>Sagi's Vacations Website</h1><hr/>
             <h2>Those are the latest vacations we got for you:</h2>
             <div className="vacation-list">
-            {vacations.map(item=><InfoCard key={item.vacKey} vacKey={item.vacKey} vacDestination={item.destination} vacDescription={item.description} vacStartDate={item.startDate} vacEndDate={item.endDate} vacPrice={item.price}/>)}
+            {vacations.map
+            (item=>
+            <InfoCard 
+            key={item.vacKey} 
+            vacKey={item.vacKey} 
+            vacDestination={item.destination} 
+            vacDescription={item.description} 
+            vacStartDate={item.startDate} 
+            vacEndDate={item.endDate} 
+            vacPrice={item.price} 
+            userKey={userKey}/>)}
             </div>
             </div>
         </div>
