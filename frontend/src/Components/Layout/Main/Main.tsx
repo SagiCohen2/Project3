@@ -19,7 +19,21 @@ function Main(): JSX.Element {
         });
     },[]);
 
-    const [userKey,setUserKey] = useState(null);
+    const [userKey,setUserKey] = useState<number | null> (null);
+
+    useEffect(() => {
+        // Make an API request to fetch the userKey
+        axios
+          .get("http://localhost:8080/api/v1/user/userKey")
+          .then((response) => {
+            const userKey = response.data.userKey;
+            setUserKey(userKey);
+          })
+          .catch((error) => {
+            console.log("Error retrieving userKey:", error);
+          });
+      }, []);
+    
 
     return (
         <div className="Main">

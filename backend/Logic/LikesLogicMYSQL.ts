@@ -6,7 +6,7 @@ import Vacation from '../Models/Vacation';
 const addLike = async (User:UserInfo,Vacation:Vacation) => {
     // SQL Command for add a Vacation to favorites list
     const SQLcommand = `
-    INSERT INTO vac_project.user_likes (likeKey, userKey, vacKey)
+    INSERT INTO vac_project.user_likes (likeNum, userKey, vacKey)
     VALUES (1, ${User.userKey}, ${Vacation.vacKey});`
     const result:OkPacket = await dal_mysql.execute(SQLcommand);
     return result.insertId;

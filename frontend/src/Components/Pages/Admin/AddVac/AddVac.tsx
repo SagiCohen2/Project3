@@ -8,54 +8,78 @@ import { useState } from "react";
 import { mainReducer } from "../../../Redux/VacationStore";
 import { addVacAction } from "../../../Redux/VacationReducer";
 
+
+
+
+
 function AddVac(): JSX.Element {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const {
-      register,handleSubmit,formState: {errors},
-          } = useForm<Vacation>();
+const {
+  register,handleSubmit,formState: {errors},
+      } = useForm<Vacation>();
 
-    const addNewVacation = (newVacData: Vacation) => {
-      mainReducer.dispatch(addVacAction(newVacData))
-      axios
-        .post(`http://localhost:8080/api/v1/vacations/AddVac`, newVacData)
-        .then((response) => {
-        console.log(response)
-      })
-        .catch((err) => {
-        console.error(err)
-      })
-      navigate("/")
+const addNewVacation = (newVacData: Vacation) => {
+  mainReducer.dispatch(addVacAction(newVacData))
+  axios
+    .post(`http://localhost:8080/api/v1/vacations/AddVac`, newVacData)
+    .then((response) => {
+    console.log(response)
+  })
+    .catch((err) => {
+    console.error(err)
+  })
+  navigate("/")
+}
+
+
+const uploadImage = (newImage: any) => {
+  console.log(newImage);
+  const image = new FormData();
+  image.append("sampleFile", newImage);
+  axios.post(
+    "http://localhost:8080/api/v1/vacations/uploadImage",
+    image,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     }
+  );
+};
 
-    const [file, setFile] = useState("");
+  const [image, setImage] = useState("");
 
-    const handleFile = (event:any) => {
-            setFile(event.target.files[0])
-            console.log(event.target.files[0])
+  function handleChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
     }
+  }
 
-    const handleUpload = () => {
-        const form = new FormData();
-        form.append('image',file);
-        axios.post(`http://localhost:8080/api/v1/vacations/uploadImage`,form)
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+  const onSubmit = async (data: any) => {
+    try {
+      const newVacation: Vacation = {
+        vacKey: data.vacKey,
+        destination: data.destination,
+        description: data.description,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        price: data.price,
+        vacImage: data.image[0].name,
+      };
+      // check if destiny exist in database if it exists cancel the upload and notyf
+      addNewVacation(newVacation);
+      uploadImage(data.image[0]);
+    } catch (error) {
+      console.error(error);
     }
-
-    const handleFormSubmit = (data:Vacation) => {
-      addNewVacation(data);
-      handleUpload();
-    }
+  };
 
     return (
         <div className="AddVac">
-            <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data">
+            <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
 			<div className="Box"><h3>Add Vacation:</h3><br/>
             <TextField fullWidth
           id="outlined-multiline-flexible"
@@ -85,7 +109,7 @@ function AddVac(): JSX.Element {
             label="Amount" {...register("price", { required: true })}
           /></FormControl><br/>
           <h4>Choose Vacation Image</h4>
-            <br/><TextField fullWidth type="file" name="vacImage" {...register("vacImage", { required: true })}></TextField><hr/>
+            <br/><TextField fullWidth type="file" name="vacImage" {...register("vacImage", { required: true })} onChange={handleChange}></TextField><hr/>
             {/* <br/><input id='files' type="file" multiple></input><hr/> */}
             <Button variant="contained" type="submit">Add Vacation</Button><hr/>
             <Button variant="contained" color="error" size="small">Cancel</Button><br/>

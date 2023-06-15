@@ -33,21 +33,33 @@ vacationsRouter.post(
     }
 );
 
-// // upload image
+// // UPLOAD IMAGE
 // vacationsRouter.post(
-//     "/uploadImage",uploadFiles
+//     "/uploadImage",
 //     async (request: Request, response: Response, next: NextFunction) => {
-
-//         response.status(201).json({message: `Image uploaded successfully`})
+//       try {
+//         let sampleFile: UploadedFile;
+//         let uploadPath: string;
+//         if (!request.files || Object.keys(request.files).length === 0) {
+//             response.status(404).json({message:'error in uploading file'})
+//             return;
+//         }
+//         const files = request.files as Express.Multer.File[];
+//         sampleFile = files.sampleFile as UploadedFile;
+//         uploadPath = "./assets/" + sampleFile.name;
+//         sampleFile.mv(uploadPath, function (err: any) {
+//           if (err) {
+//             response.status(404).json({message:'error in uploading file'})
+//             return
+//           }
+//           console.log("File saved at:", uploadPath); // Log the file path
+//           response.status(201).json({ message: "File uploaded!" });
+//         });
+//       } catch (error) {
+//         next(error);
+//       }
 //     }
-// )
-const upload = multer({ dest: "../assets" });
-
-vacationsRouter.post("/uploadImage", upload.array("files"), uploadFiles);
-function uploadFiles(req: any, res: any) {
-    response.status(202).json({ message: `Image uploaded successfully` })
-    console.log(req.body);
-}
+//   );
 
 // Delete vacation
 vacationsRouter.delete(
