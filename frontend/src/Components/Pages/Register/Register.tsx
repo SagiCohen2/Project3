@@ -38,18 +38,24 @@ const addNewUser = (newUser: any) => {
     axios
       .post('http://localhost:8080/api/v1/users/Register', newUser)
       .then((response) => {
+        notify.success('Register successfully');
       })
-      .catch((err) => {
-        console.error(err)
-      })
-  }
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          // Email already exists, display a notice to the user
+          notify.error('Email already exists');
+        } else {
+          console.error(error);
+        }
+      });
+  };
 
 export default function SignUp(): JSX.Element {
   
   const navigate = useNavigate();
     const navigateLogin = () => {
     // 👇️ navigate to
-    navigate('/Login');
+    navigate('/m/Login');
     }
 
 const {

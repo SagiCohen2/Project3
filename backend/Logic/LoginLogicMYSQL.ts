@@ -19,14 +19,24 @@ const login = async (existsUser:UserInfo) => {
 }
 
 
-const register = async (newUser:UserInfo) => {
-    // SQL command for new user
-    const SQLcommand = `INSERT INTO 
-    vac_project.users (name,email, pass) 
-    VALUES ('${newUser.fullName}', '${newUser.email}', '${newUser.password}');`
-    const result:OkPacket = await dal_mysql.execute(SQLcommand);
-    return result.insertId;
-}
+const register = async (newUser: UserInfo) => {
+    try {
+      const SQLcommand = `INSERT INTO 
+        vac_project.users (name, email, pass) 
+        VALUES ('${newUser.fullName}', '${newUser.email}', '${newUser.password}');`;
+        
+      const result: OkPacket = await dal_mysql.execute(SQLcommand);
+      return result.insertId;
+    } catch (error) {
+      if ((error as any).code === 'ER_DUP_ENTRY') {
+        // Handle the case when the email already exists
+        throw new Error('Email already exists');
+      } else {
+        // Handle other types of errors
+        throw error;
+      }
+    }
+  };
 
 const deleteUser = (id:number) => {
     

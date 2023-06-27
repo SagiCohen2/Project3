@@ -54,7 +54,7 @@ function InfoCard(props:VacationProps & UserProps): JSX.Element {
         notify.success("Vacation add to favorites list");
       })
       .catch(error => {
-        notify.error("Error adding vacation to favorites:");
+        notify.error("Error adding vacation to favorites");
       })
     }
 

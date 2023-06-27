@@ -39,11 +39,16 @@ loginRouter.post(
 loginRouter.post(
     "/register",
     async (request:Request,response:Response,next:NextFunction) => {
+        try {
         const newUser = request.body;
         const result = await LoginLogicMYSQL.register(newUser);
         console.log("register", newUser);
         response.status(201).json(result);
+    } catch (error) {
+        response.status(404).json({ error : "Internal Server Error"});
+        console.error("Registration Error:", error)
     }
+}
 )
 
 loginRouter.delete(

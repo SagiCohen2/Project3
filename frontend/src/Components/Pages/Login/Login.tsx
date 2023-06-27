@@ -56,7 +56,7 @@ const findUser = (existsUser: any) => {
   const navigate = useNavigate();
 const navigateRegister = () => {
   // 👇️ navigate to /
-  navigate('/Register');
+  navigate('/m/Register');
 }
 
 

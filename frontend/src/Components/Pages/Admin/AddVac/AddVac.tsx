@@ -8,10 +8,6 @@ import { useState } from "react";
 import { mainReducer } from "../../../Redux/VacationStore";
 import { addVacAction } from "../../../Redux/VacationReducer";
 
-
-
-
-
 function AddVac(): JSX.Element {
 
   const navigate = useNavigate();
@@ -55,6 +51,8 @@ const uploadImage = (newImage: any) => {
     const file = event.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
+      // console.log(URL.createObjectURL(file));
+      console.log(event.target.files[0]);
     }
   }
 
@@ -67,11 +65,13 @@ const uploadImage = (newImage: any) => {
         startDate: data.startDate,
         endDate: data.endDate,
         price: data.price,
-        vacImage: data.image[0].name,
+        vacImage: data.file[0].name
       };
       // check if destiny exist in database if it exists cancel the upload and notyf
       addNewVacation(newVacation);
       uploadImage(data.image[0]);
+      console.log(newVacation) 
+      
     } catch (error) {
       console.error(error);
     }
