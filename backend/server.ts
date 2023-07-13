@@ -28,7 +28,7 @@ const path = require('path');
 server.use(express.urlencoded({ extended: true }));
 
 //where i will save the files
-server.use(express.static("./assets"));
+server.use(express.static("assets"));
 
 //enable file uploading, and create a path for the files if it not exists
 server.use(fileUpload({ createParentPath: true }));
@@ -40,6 +40,11 @@ server.use(bodyParser.json());
 server.use("/api/v1/users", loginRouter);
 server.use("/api/v1/vacations", vacationsRouter);
 server.use("/api/v1/likes", likesRouter);
+
+// files
+server.get("*",(req,res)=>{
+  res.sendFile(path.resolve(__dirname,"assets"));
+});
 
 //handle errors (route not found)
 server.use("*", ErrorHandler);

@@ -7,7 +7,8 @@ class Vacation {
     public price:number;
     public vacImage:string;
 
-constructor(destination:string,description:string,startDate:string,endDate:string,price:number,vacImage:string){
+constructor(vacKey:number,destination:string,description:string,startDate:string,endDate:string,price:number,vacImage:string){
+    this.vacKey=vacKey;
     this.destination=destination;
     this.description=description;
     this.startDate=startDate;

@@ -3,6 +3,7 @@ import VacationLogicMYSQL from "../Logic/VacationLogicMYSQL";
 import multer from 'multer';
 import path from 'path';
 import { UploadedFile } from "express-fileupload";
+// import upload from "../Logic/fileupload";
 
 
 // AddVacation    => POST 
@@ -22,44 +23,79 @@ vacationsRouter.post(
 );
 
 
+// const storage = multer.diskStorage({
+//     destination: 'assets/', // Specify the destination folder for uploaded images
+//     filename: (req, file, cb) => {
+//       // Generate a unique filename for the uploaded image
+//       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+//       cb(null, uniqueSuffix + '-' + file.originalname);
+//     },
+//   });
+  
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'assets/'); // Specify the destination folder for uploaded images
+    },
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    },
+  });
+
+  // Create the multer upload instance
+  const upload = multer({
+    storage,
+    limits: { fileSize: 10 * 1024 * 1024 }, // Adjust the file size limit if needed
+    fileFilter: (req, file, cb) => {
+      if (file.fieldname === 'vacImage') {
+        cb(null, true);
+      } else {
+        cb(new Error('Unexpected field name'));
+      }
+    },
+  });
+  
+
+
 // Add new vacation
 vacationsRouter.post(
     "/AddVac",
+    // upload.single('vacImage'),
     async (request: Request, response: Response, next: NextFunction) => {
         const newVac = request.body;
+        // const file = request.file;
         const result = await VacationLogicMYSQL.addVac(newVac);
         console.log("Request Body: ", newVac);
+        // console.log("Uploaded File: ", file);
         response.status(201).json(result);
     }
 );
 
-// // UPLOAD IMAGE
+// upload image
 // vacationsRouter.post(
 //     "/uploadImage",
-//     async (request: Request, response: Response, next: NextFunction) => {
-//       try {
-//         let sampleFile: UploadedFile;
-//         let uploadPath: string;
-//         if (!request.files || Object.keys(request.files).length === 0) {
-//             response.status(404).json({message:'error in uploading file'})
-//             return;
-//         }
-//         const files = request.files as Express.Multer.File[];
-//         sampleFile = files.sampleFile as UploadedFile;
-//         uploadPath = "./assets/" + sampleFile.name;
-//         sampleFile.mv(uploadPath, function (err: any) {
-//           if (err) {
-//             response.status(404).json({message:'error in uploading file'})
-//             return
-//           }
-//           console.log("File saved at:", uploadPath); // Log the file path
-//           response.status(201).json({ message: "File uploaded!" });
-//         });
-//       } catch (error) {
-//         next(error);
-//       }
+//     upload.single('vacImage'),
+//     async (request, response, next) => {
+//       const file = request.file;
+        
+//       console.log("Received file in /uploadImage route:", file);
+//       // Handle the uploaded image, e.g., save it to a desired location
+  
+//       console.log("Uploaded File: ", file);
+//       response.status(201).json({ message: "Image uploaded successfully" });
 //     }
 //   );
+
+vacationsRouter.post(
+    "/uploadImage",
+    upload.single('vacImage'),
+    async (request, response, next) => {
+      const file = request.files;
+      // Handle the uploaded image, e.g., save it to a desired location
+      console.log("Uploaded File: ", file);
+      response.status(201).json({ message: "Image uploaded successfully" });
+    }
+  );
 
 // Delete vacation
 vacationsRouter.delete(

@@ -22,6 +22,7 @@ const addNewVacation = (newVacData: Vacation) => {
     .post(`http://localhost:8080/api/v1/vacations/AddVac`, newVacData)
     .then((response) => {
     console.log(response)
+    console.log(newVacData)
   })
     .catch((err) => {
     console.error(err)
@@ -30,19 +31,26 @@ const addNewVacation = (newVacData: Vacation) => {
 }
 
 
-const uploadImage = (newImage: any) => {
-  console.log(newImage);
-  const image = new FormData();
-  image.append("sampleFile", newImage);
-  axios.post(
-    "http://localhost:8080/api/v1/vacations/uploadImage",
-    image,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
+const uploadImage = async (file:File) => {
+  console.log("File received in uploadImage:", file);
+
+  const formData = new FormData();
+  formData.append('vacImage', file);
+
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/v1/vacations/uploadImage",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    console.log("Image uploaded successfully:", response.data);
+  } catch (error) {
+    console.error("Error uploading image:", error);
+  }
 };
 
   const [image, setImage] = useState("");
@@ -52,7 +60,7 @@ const uploadImage = (newImage: any) => {
     if (file) {
       setImage(URL.createObjectURL(file));
       // console.log(URL.createObjectURL(file));
-      console.log(event.target.files[0]);
+      console.log("File name",event.target.files[0].name);
     }
   }
 
@@ -65,13 +73,12 @@ const uploadImage = (newImage: any) => {
         startDate: data.startDate,
         endDate: data.endDate,
         price: data.price,
-        vacImage: data.file[0].name
+        vacImage: data.vacImage[0].name
       };
       // check if destiny exist in database if it exists cancel the upload and notyf
       addNewVacation(newVacation);
-      uploadImage(data.image[0]);
-      console.log(newVacation) 
-      
+      await uploadImage(data.vacImage[0]);
+      console.log(data.vacImage[0])
     } catch (error) {
       console.error(error);
     }
@@ -98,7 +105,7 @@ const uploadImage = (newImage: any) => {
             <hr/>
             <label>Start Date:</label>
             <input type="date" {...register("startDate", { required: true })}/><hr/>
-            <label>End Date: Date:</label>
+            <label>End Date:</label>
             <input type="date" {...register("endDate", { required: true })}/>
             <hr/>
             <FormControl fullWidth sx={{ m: 1 }}>
@@ -109,8 +116,12 @@ const uploadImage = (newImage: any) => {
             label="Amount" {...register("price", { required: true })}
           /></FormControl><br/>
           <h4>Choose Vacation Image</h4>
-            <br/><TextField fullWidth type="file" name="vacImage" {...register("vacImage", { required: true })} onChange={handleChange}></TextField><hr/>
-            {/* <br/><input id='files' type="file" multiple></input><hr/> */}
+            <br/>
+            {/* <TextField fullWidth type="file" name="vacImage" {...register("vacImage", { required: true })} onChange={handleChange}></TextField> */}
+            <hr/>
+            <br/>
+            <input type="file" name="vacImage" {...register("vacImage")} onChange={handleChange}></input>
+            <hr/>
             <Button variant="contained" type="submit">Add Vacation</Button><hr/>
             <Button variant="contained" color="error" size="small">Cancel</Button><br/>
             </div>

@@ -51,6 +51,7 @@ function Main(): JSX.Element {
             vacStartDate={item.startDate} 
             vacEndDate={item.endDate} 
             vacPrice={item.price} 
+            vacImage={item.vacImage}
             userKey={userKey}/>)}
             </div>
             </div>

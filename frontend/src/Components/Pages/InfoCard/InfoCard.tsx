@@ -18,7 +18,7 @@ interface VacationProps{
     vacStartDate:string;
     vacEndDate:string;
     vacPrice:number;
-    // vacImage:string;
+    vacImage:string;
 }
 interface UserProps{
     userKey:number;
@@ -82,14 +82,16 @@ function InfoCard(props:VacationProps & UserProps): JSX.Element {
         size="medium" checked={isChecked} onChange={handleCheckboxChange}
         sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
         />
-      <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
+      {/* <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img
-          src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-          srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
+          src={props.vacImage}
           loading="lazy"
           alt=""
         />
-      </AspectRatio>
+      </AspectRatio> */}
+      <Box sx={{ aspectRatio: '4/3' }}>
+        <img src={props.vacImage} loading="lazy" alt="" />
+      </Box>
       <Box sx={{ display: 'flex' }}>
         <div>
           <Typography level="body3">{prettyStartDate(props.vacStartDate)}  Till  

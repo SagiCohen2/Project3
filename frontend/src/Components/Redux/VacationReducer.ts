@@ -10,6 +10,9 @@ export enum VacationActionType {
     addVac = "addVac",
     deleteVac = "deleteVac",
     editVac = "editVac",
+    getVacs = "getVacs",
+    vacLike = "vacLike",
+    vacUnLike = "vacUnLike",
 }
 
 // action interface
@@ -30,6 +33,18 @@ export const editVacAction = (newVacation:Vacation): VacationAction => {
     return { type:VacationActionType.editVac, payload: newVacation };
 };
 
+export const getVacsAction = (allVacations:Vacation[]): VacationAction => {
+    return { type:VacationActionType.getVacs, payload: allVacations };
+}
+
+export const vacLikeAction = (vacationId:number): VacationAction => {
+    return { type:VacationActionType.vacLike, payload:vacationId }
+}
+
+export const vacUnLikeAction = (vacationId:number): VacationAction => {
+    return { type:VacationActionType.vacUnLike, payload:vacationId }
+}
+
 // the reducer
 export function VacationReducer (
     currentState: VacationsState = new VacationsState(),
@@ -48,7 +63,10 @@ export function VacationReducer (
         
         // ANOTHER CASE
         // case VacationActionType.editVac:
-        //     newState.allVacations = []             
+        //     newState.allVacations = []    
+        case VacationActionType.getVacs:
+            newState.allVacations = action.payload;
+            break;         
     }
 
     return newState;
