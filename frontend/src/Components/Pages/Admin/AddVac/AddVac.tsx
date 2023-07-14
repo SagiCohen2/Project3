@@ -60,7 +60,7 @@ const uploadImage = async (file:File) => {
     if (file) {
       setImage(URL.createObjectURL(file));
       // console.log(URL.createObjectURL(file));
-      console.log("File name",event.target.files[0].name);
+      console.log("File name:",event.target.files[0].name);
     }
   }
 
@@ -73,7 +73,8 @@ const uploadImage = async (file:File) => {
         startDate: data.startDate,
         endDate: data.endDate,
         price: data.price,
-        vacImage: data.vacImage[0].name
+        // vacImage: data.vacImage[0].name
+        vacImage: data.vacImage[0] ? data.vacImage[0].name : "",
       };
       // check if destiny exist in database if it exists cancel the upload and notyf
       addNewVacation(newVacation);
@@ -120,6 +121,7 @@ const uploadImage = async (file:File) => {
             {/* <TextField fullWidth type="file" name="vacImage" {...register("vacImage", { required: true })} onChange={handleChange}></TextField> */}
             <hr/>
             <br/>
+            {/* <input type="file" name="vacImage" {...register("vacImage")} onChange={handleChange}></input> */}
             <input type="file" name="vacImage" {...register("vacImage")} onChange={handleChange}></input>
             <hr/>
             <Button variant="contained" type="submit">Add Vacation</Button><hr/>

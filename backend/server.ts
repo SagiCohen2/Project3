@@ -23,15 +23,17 @@ server.use(express.json());
 
 // multer , for file uploads
 const bodyParser = require('body-parser')
-const multer = require("multer");
+// const multer = require("multer");
 const path = require('path');
+// const destination = path.resolve('assets/');
 server.use(express.urlencoded({ extended: true }));
+
 
 //where i will save the files
 server.use(express.static("assets"));
 
 //enable file uploading, and create a path for the files if it not exists
-server.use(fileUpload({ createParentPath: true }));
+// server.use(fileUpload({ createParentPath: true}));
 
 //parse the body as json , for easy work
 server.use(bodyParser.json());

@@ -24,36 +24,37 @@ vacationsRouter.post(
 
 
 // const storage = multer.diskStorage({
-//     destination: 'assets/', // Specify the destination folder for uploaded images
+//     destination: (req, file, cb) => {
+//       cb(null, 'assets/'); // Specify the destination folder for uploaded images
+//     },
 //     filename: (req, file, cb) => {
-//       // Generate a unique filename for the uploaded image
 //       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-//       cb(null, uniqueSuffix + '-' + file.originalname);
+//       cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
 //     },
 //   });
-  
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'assets/'); // Specify the destination folder for uploaded images
-    },
-    filename: (req, file, cb) => {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-    },
-  });
 
-  // Create the multer upload instance
-  const upload = multer({
-    storage,
-    limits: { fileSize: 10 * 1024 * 1024 }, // Adjust the file size limit if needed
-    fileFilter: (req, file, cb) => {
-      if (file.fieldname === 'vacImage') {
-        cb(null, true);
-      } else {
-        cb(new Error('Unexpected field name'));
-      }
-    },
-  });
+//   // Create the multer upload instance
+//   const upload = multer({
+//     storage,
+//     limits: { fileSize: 10 * 1024 * 1024 }, // Adjust the file size limit if needed
+//     fileFilter: (req, file, cb) => {
+//       if (file.fieldname === 'vacImage') {
+//         cb(null, true);
+//       } else {
+//         cb(new Error('Unexpected field name'));
+//       }
+//     },
+//   });
+// vacationsRouter.post(
+//     "/uploadImage",
+//     upload.single('vacImage'),
+//     async (request, response, next) => {
+//       const file = request.files;
+//       // Handle the uploaded image, e.g., save it to a desired location
+//       console.log("Uploaded File: ", file);
+//       response.status(201).json({ message: "Image uploaded successfully" });
+//     }
+//   )
   
 
 
@@ -71,31 +72,57 @@ vacationsRouter.post(
     }
 );
 
-// upload image
-// vacationsRouter.post(
-//     "/uploadImage",
-//     upload.single('vacImage'),
-//     async (request, response, next) => {
-//       const file = request.file;
-        
-//       console.log("Received file in /uploadImage route:", file);
-//       // Handle the uploaded image, e.g., save it to a desired location
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'assets/'); // Specify the destination folder for uploaded images
+    },
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    },
+  });
   
-//       console.log("Uploaded File: ", file);
-//       response.status(201).json({ message: "Image uploaded successfully" });
-//     }
-//   );
-
-vacationsRouter.post(
-    "/uploadImage",
+  const upload = multer({
+    storage,
+    limits: { fileSize: 10 * 1024 * 1024 }, // Adjust the file size limit if needed
+    fileFilter: (req, file, cb) => {
+      if (file.fieldname === 'vacImage') {
+        cb(null, true);
+      } else {
+        cb(new Error('Unexpected field name'));
+      }
+    },
+  });
+  
+  vacationsRouter.post("/uploadImage", 
     upload.single('vacImage'),
-    async (request, response, next) => {
-      const file = request.files;
+        async (req, res, next) => {
+    try {
+      const file = req.file;
+  
+      if (!file) {
+        throw new Error('No file uploaded');
+      }
+  
+      // Access the file properties
+      const filename = file.filename;
+      const originalname = file.originalname;
+      const mimetype = file.mimetype;
+      const destination = file.destination;
+      const filePath = file.path;
+      const size = file.size;
+  
       // Handle the uploaded image, e.g., save it to a desired location
+      // Use the file properties above to determine the desired location or perform any additional operations.
+  
       console.log("Uploaded File: ", file);
-      response.status(201).json({ message: "Image uploaded successfully" });
+      res.status(201).json({ message: "Image uploaded successfully" });
+    } catch (error) {
+      console.error("Error while uploading file:", error);
+      res.status(404).json({ error: "Failed to upload file" });
     }
-  );
+  });
+  
 
 // Delete vacation
 vacationsRouter.delete(
