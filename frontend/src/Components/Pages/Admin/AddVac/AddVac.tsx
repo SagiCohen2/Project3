@@ -31,8 +31,8 @@ const addNewVacation = (newVacData: Vacation) => {
 }
 
 
-const uploadImage = async (file:File) => {
-  console.log("File received in uploadImage:", file);
+const uploadImage = async (file:any) => {
+  // console.log("File received in uploadImage:", file);
 
   const formData = new FormData();
   formData.append('vacImage', file);
@@ -59,7 +59,6 @@ const uploadImage = async (file:File) => {
     const file = event.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
-      // console.log(URL.createObjectURL(file));
       console.log("File name:",event.target.files[0].name);
     }
   }
@@ -74,7 +73,7 @@ const uploadImage = async (file:File) => {
         endDate: data.endDate,
         price: data.price,
         // vacImage: data.vacImage[0].name
-        vacImage: data.vacImage[0] ? data.vacImage[0].name : "",
+        vacImage: data.vacImage[0],
       };
       // check if destiny exist in database if it exists cancel the upload and notyf
       addNewVacation(newVacation);

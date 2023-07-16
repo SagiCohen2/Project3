@@ -10,6 +10,7 @@ import { Checkbox } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import notify from "../../Utils/Notyf";
+import { useDispatch } from "react-redux";
 
 interface VacationProps{
     vacKey:number;
@@ -29,11 +30,10 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 function InfoCard(props:VacationProps & UserProps): JSX.Element {
 
     const [isChecked, setIsChecked] = useState(false);
+    // const dispatch = useDispatch();
   
     const handleCheckboxChange = (event:any) => {
       setIsChecked(event.target.checked);
-      // console.log('Card key:' , props.vacKey)
-  
       // Call function to add/remove from MySQL database table
       if (event.target.checked) {
           addToFavorites();
@@ -82,16 +82,13 @@ function InfoCard(props:VacationProps & UserProps): JSX.Element {
         size="medium" checked={isChecked} onChange={handleCheckboxChange}
         sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
         />
-      {/* <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
+      <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img
           src={props.vacImage}
           loading="lazy"
           alt=""
         />
-      </AspectRatio> */}
-      <Box sx={{ aspectRatio: '4/3' }}>
-        <img src={props.vacImage} loading="lazy" alt="" />
-      </Box>
+      </AspectRatio>
       <Box sx={{ display: 'flex' }}>
         <div>
           <Typography level="body3">{prettyStartDate(props.vacStartDate)}  Till  
