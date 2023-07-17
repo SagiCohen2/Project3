@@ -14,6 +14,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import notify from '../../Utils/Notyf';
+import jwt from 'jsonwebtoken';
 
 function Copyright(props: any) {
   return (
@@ -42,6 +43,7 @@ const findUser = (existsUser: any) => {
       const userExists = response.data.exists;
       if (userExists === true) {
         notify.success("Logged in successfully");
+
         setTimeout(() => {
           navigate("/");
         }, 2500); // Delay of 2.5 seconds , just for notify being showed.

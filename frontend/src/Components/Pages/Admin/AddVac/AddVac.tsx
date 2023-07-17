@@ -73,7 +73,7 @@ const uploadImage = async (file:any) => {
         endDate: data.endDate,
         price: data.price,
         // vacImage: data.vacImage[0].name
-        vacImage: data.vacImage[0],
+        vacImage: data.vacImage[0].name,
       };
       // check if destiny exist in database if it exists cancel the upload and notyf
       addNewVacation(newVacation);
